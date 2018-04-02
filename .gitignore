@@ -1,3 +1,5 @@
 Codefarts.AppCore/bin/
 Codefarts.AppCore/obj/
 *.user
+Codefarts.AppCore.Android/obj/
+*.meta
