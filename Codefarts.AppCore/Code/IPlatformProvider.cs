@@ -1,7 +1,12 @@
 ﻿namespace Codefarts.AppCore
 {
     using System;
+#if NET40 || PORTABLE
     using System.Threading.Tasks;
+#endif
+#if UNITY_5
+    using Task = Codefarts.UnityThreading.Task;
+#endif
 
     /// <summary>
     /// Interface for platform specific operations that need enlightenment.

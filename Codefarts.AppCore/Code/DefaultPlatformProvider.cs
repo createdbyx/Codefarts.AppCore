@@ -1,8 +1,12 @@
 ﻿namespace Codefarts.AppCore
 {
     using System;
-    using System.Collections.Generic;
+#if NET40 || PORTABLE
     using System.Threading.Tasks;
+#endif      
+#if UNITY_5
+    using Task = Codefarts.UnityThreading.Task;
+#endif
 
     /// <summary>
     /// Default implementation for <see cref="IPlatformProvider"/> that does no platform enlightenment.

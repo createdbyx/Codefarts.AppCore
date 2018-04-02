@@ -1,17 +1,19 @@
-﻿using System.Xml.Serialization;
-
-namespace Codefarts.AppCore
+﻿namespace Codefarts.AppCore
 {
     using System;
     using System.ComponentModel;
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Runtime.Serialization;
+    using System.Xml.Serialization;
+
 
     /// <summary>
     /// A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
     /// </summary>
-    [DataContract]
+#if !ANDROID44
+          [DataContract]
+#endif
     public class PropertyChangedBase : INotifyPropertyChanged
     {
         /// <summary>
@@ -46,7 +48,7 @@ namespace Codefarts.AppCore
         /// Notifies subscribers of the property change.
         /// </summary>
         /// <param name = "propertyName">Name of the property.</param>
-#if NET || SILVERLIGHT
+#if NET || SILVERLIGHT || UNITY_5   
         public virtual void NotifyOfPropertyChange(string propertyName) {
 #else
         public virtual void NotifyOfPropertyChange([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)

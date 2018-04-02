@@ -42,7 +42,9 @@
         public virtual void NotifyOfPropertyChange(string propertyName)
         {
             if (this.IsNotifying)
+            {
                 PlatformProvider.Current.OnUIThread(() => this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
+            }
         }
 
         /// <summary>
