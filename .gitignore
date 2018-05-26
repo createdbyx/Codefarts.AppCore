@@ -3,3 +3,7 @@ Codefarts.AppCore/obj/
 *.user
 Codefarts.AppCore.Android/obj/
 *.meta
+Codefarts.AppCore35/obj/
+Codefarts.AppCore45/obj/
+Codefarts.AppCoreWpf45/obj/
+Codefarts.AppCoreWpf35/obj/

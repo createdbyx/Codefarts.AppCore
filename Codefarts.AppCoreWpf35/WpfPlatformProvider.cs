@@ -1,7 +1,11 @@
-﻿namespace Codefarts.AppCore
+﻿
+namespace Codefarts.AppCore
 {
     using System;
-#if NET40 || PORTABLE || NET45
+    using System.Windows;
+    using System.ComponentModel;
+
+#if NET40 || PORTABLE
     using System.Threading.Tasks;
 #else
     using System.Threading;
@@ -13,24 +17,18 @@
     /// <summary>
     /// Default implementation for <see cref="IPlatformProvider"/> that does no platform enlightenment.
     /// </summary>
-    public class DefaultPlatformProvider : IPlatformProvider
+    public class WpfPlatformProvider : IPlatformProvider
     {
         /// <summary>
         /// Indicates whether or not the framework is in design-time mode.
         /// </summary>
         public bool InDesignMode
         {
-            get { return true; }
+            get
+            {
+                return DesignerProperties.GetIsInDesignMode(Application.Current.MainWindow);
+            }
         }
-
-        ///// <summary>
-        ///// Executes the action on the UI thread asynchronously.
-        ///// </summary>
-        ///// <param name="action">The action to execute.</param>
-        //public void BeginOnUIThread(Action action)
-        //{
-        //    action();
-        //}
 
         /// <summary>
         /// Executes the action on the UI thread asynchronously.
@@ -39,11 +37,7 @@
         /// <returns></returns>
         public void OnUIThreadAsync(Action action)
         {
-#if NET40 || PORTABLE || NET45
-            Task.Factory.StartNew(action);
-#else
-            ThreadPool.QueueUserWorkItem(x => action());
-#endif
+            Application.Current.Dispatcher.BeginInvoke(action, null);
         }
 
         /// <summary>
@@ -52,7 +46,7 @@
         /// <param name="action">The action to execute.</param>
         public void OnUIThread(Action action)
         {
-            action();
+            Application.Current.Dispatcher.Invoke(action);
         }
 
         ///// <summary>
