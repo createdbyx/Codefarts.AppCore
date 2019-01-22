@@ -1,5 +1,5 @@
 ﻿namespace Codefarts.AppCore
-{                                
+{
 
     /// <summary>
     /// Access the current <see cref="IPlatformProvider"/>.

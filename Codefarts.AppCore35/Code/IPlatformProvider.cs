@@ -31,6 +31,19 @@
         /// </summary>
         /// <param name = "action">The action to execute.</param>
         /// <remarks>Implementation details are left up to the platform implementor weather in the form of Tasks or spawning a new thread.</remarks>
+        void OnUIThreadAsync(Action<object[]> action, params object[] args);
+
+        /// <summary>
+        ///   Executes the action on the UI thread.
+        /// </summary>
+        /// <param name = "action">The action to execute.</param>
+        void OnUIThread(Action<object[]> action, params object[] args);
+
+        /// <summary>
+        ///   Executes the action on the UI thread asynchronously.
+        /// </summary>
+        /// <param name = "action">The action to execute.</param>
+        /// <remarks>Implementation details are left up to the platform implementor weather in the form of Tasks or spawning a new thread.</remarks>
         void OnUIThreadAsync(Action action);
 
         /// <summary>
@@ -51,7 +64,7 @@
         ///// <remarks>In certain instances the services create UI elements.
         ///// For example, if you ask the window manager to show a UserControl as a dialog, it creates a window to host the UserControl in.
         ///// The WindowManager marks that element as a framework-created element so that it can determine what it created vs. what was intended by the developer.
-        ///// Calling GetFirstNonGeneratedView allows the framework to discover what the original element was. 
+        ///// Calling GetFirstNonGeneratedView allows the framework to discover what the original element was.
         ///// </remarks>
         // object GetFirstNonGeneratedView(object view);
 

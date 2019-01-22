@@ -1,32 +1,32 @@
-﻿
-namespace Codefarts.AppCore
+﻿namespace Codefarts.AppCore
 {
     using System;
-    using System.Windows;
     using System.ComponentModel;
+    using System.Windows;
 
 #if NET40 || PORTABLE
     using System.Threading.Tasks;
 #else
-    using System.Threading;
 #endif
 #if UNITY_5
     using Task = Codefarts.UnityThreading.Task;
 #endif
 
     /// <summary>
-    /// Default implementation for <see cref="IPlatformProvider"/> that does no platform enlightenment.
+    /// Default implementation of <see cref="IPlatformProvider"/> for Wpf 3.5 & 4.5.
     /// </summary>
     public class WpfPlatformProvider : IPlatformProvider
     {
         /// <summary>
-        /// Indicates whether or not the framework is in design-time mode.
+        /// Gets a value indicating whether or not the framework is in design-time mode.
         /// </summary>
+        /// <remarks>Uses <see cref="Application.Current"/> main window to determine if in design mode.</remarks>
         public bool InDesignMode
         {
             get
             {
-                return DesignerProperties.GetIsInDesignMode(Application.Current.MainWindow);
+                var application = Application.Current;
+                return DesignerProperties.GetIsInDesignMode(application.MainWindow ?? throw new InvalidOperationException());
             }
         }
 
@@ -34,72 +34,58 @@ namespace Codefarts.AppCore
         /// Executes the action on the UI thread asynchronously.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        /// <returns></returns>
+        /// <param name="args">Provides an list of arguments that will be passed to the action via the current <see cref="AppDomain"/>.</param>
+        /// <remarks>Invokes the action via <see cref="Application.Current"/> dispatcher.</remarks>
+        public void OnUIThreadAsync(Action<object[]> action, params object[] args)
+        {
+            var application = Application.Current;
+            if (application != null)
+            {
+                application.Dispatcher.BeginInvoke(action, args);
+            }
+        }
+
+        /// <summary>
+        /// Executes the action on the UI thread asynchronously.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        /// <remarks>Invokes the action via <see cref="Application.Current"/> dispatcher.</remarks>
         public void OnUIThreadAsync(Action action)
         {
-            Application.Current.Dispatcher.BeginInvoke(action, null);
+            var application = Application.Current;
+            if (application != null)
+            {
+                application.Dispatcher.BeginInvoke(action);
+            }
         }
 
         /// <summary>
         /// Executes the action on the UI thread.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        public void OnUIThread(Action action)
+        /// <param name="args">Provides an list of arguments that will be passed to the action via the current <see cref="AppDomain"/>.</param>
+        /// <remarks>Invokes the action via <see cref="Application.Current"/> dispatcher.</remarks>
+        public void OnUIThread(Action<object[]> action, params object[] args)
         {
-            Application.Current.Dispatcher.Invoke(action);
+            var application = Application.Current;
+            if (application != null)
+            {
+                application.Dispatcher.Invoke(action, args);
+            }
         }
 
-        ///// <summary>
-        ///// Used to retrieve the root, non-framework-created view.
-        ///// </summary>
-        ///// <param name="view">The view to search.</param>
-        ///// <returns>
-        ///// The root element that was not created by the framework.
-        ///// </returns>
-        ///// <remarks>
-        ///// In certain instances the services create UI elements.
-        ///// For example, if you ask the window manager to show a UserControl as a dialog, it creates a window to host the UserControl in.
-        ///// The WindowManager marks that element as a framework-created element so that it can determine what it created vs. what was intended by the developer.
-        ///// Calling GetFirstNonGeneratedView allows the framework to discover what the original element was.
-        ///// </remarks>
-        // public object GetFirstNonGeneratedView(object view)
-        // {
-        // return view;
-        // }
-
-        ///// <summary>
-        ///// Executes the handler the fist time the view is loaded.
-        ///// </summary>
-        ///// <param name="view">The view.</param>
-        ///// <param name="handler">The handler.</param>
-        ///// <returns>true if the handler was executed immediately; false otherwise</returns>
-        // public void ExecuteOnFirstLoad(object view, Action<object> handler)
-        // {
-        // handler(view);
-        // }
-
-        ///// <summary>
-        ///// Executes the handler the next time the view's LayoutUpdated event fires.
-        ///// </summary>
-        ///// <param name="view">The view.</param>
-        ///// <param name="handler">The handler.</param>
-        // public void ExecuteOnLayoutUpdated(object view, Action<object> handler)
-        // {
-        // handler(view);
-        // }
-
-        ///// <summary>
-        ///// Get the close action for the specified view model.
-        ///// </summary>
-        ///// <param name="viewModel">The view model to close.</param>
-        ///// <param name="views">The associated views.</param>
-        ///// <param name="dialogResult">The dialog result.</param>
-        ///// <returns>
-        ///// An <see cref="Action" /> to close the view model.
-        ///// </returns>
-        // public Action GetViewCloseAction(object viewModel, ICollection<object> views, bool? dialogResult)
-        // {
-        // return () => { };
-        // }
+        /// <summary>
+        /// Executes the action on the UI thread.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        /// <remarks>Invokes the action via <see cref="Application.Current"/> dispatcher.</remarks>
+        public void OnUIThread(Action action)
+        {
+            var application = Application.Current;
+            if (application != null)
+            {
+                application.Dispatcher.Invoke(action);
+            }
+        }
     }
 }

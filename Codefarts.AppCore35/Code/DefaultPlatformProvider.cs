@@ -55,6 +55,29 @@
             action();
         }
 
+        /// <summary>
+        /// Executes the action on the UI thread asynchronously.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        /// <returns></returns>
+        public void OnUIThreadAsync(Action<object[]> action, params object[] args)
+        {
+#if NET40 || PORTABLE || NET45
+            Task.Factory.StartNew(() => action(args));
+#else
+            ThreadPool.QueueUserWorkItem(x => action(args));
+#endif
+        }
+
+        /// <summary>
+        /// Executes the action on the UI thread.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        public void OnUIThread(Action<object[]> action, params object[] args)
+        {
+            action(args);
+        }
+
         ///// <summary>
         ///// Used to retrieve the root, non-framework-created view.
         ///// </summary>

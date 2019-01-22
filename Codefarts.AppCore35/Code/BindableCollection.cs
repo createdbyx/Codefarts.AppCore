@@ -1,10 +1,10 @@
 ﻿namespace Codefarts.AppCore
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.ComponentModel;
-
 
     /// <summary>
     /// A base collection class that supports automatic UI thread marshaling.
@@ -12,8 +12,10 @@
     /// <typeparam name="T">The type of elements contained in the collection.</typeparam>
     public class BindableCollection<T> : ObservableCollection<T>, IObservableCollection<T>
     {
+        private bool isNotifying;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Caliburn.Micro.BindableCollection&lt;T&gt;" /> class.
+        /// Initializes a new instance of the <see cref = "BindableCollection{T}" /> class.
         /// </summary>
         public BindableCollection()
         {
@@ -21,9 +23,10 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Caliburn.Micro.BindableCollection&lt;T&gt;" /> class.
+        /// Initializes a new instance of the <see cref = "BindableCollection{T}" /> class.
         /// </summary>
         /// <param name = "collection">The collection from which the elements are copied.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="collection" /> parameter cannot be <see langword="null" />.</exception>
         public BindableCollection(IEnumerable<T> collection)
             : base(collection)
         {
@@ -31,9 +34,25 @@
         }
 
         /// <summary>
-        /// Enables/Disables property change notification.
+        /// Gets or sets a value indicating whether property change notifications are raised.
         /// </summary>
-        public bool IsNotifying { get; set; }
+        public bool IsNotifying
+        {
+            get
+            {
+                return this.isNotifying;
+            }
+
+            set
+            {
+                var currentValue = this.isNotifying;
+                if (currentValue != value)
+                {
+                    this.isNotifying = value;
+                    base.OnPropertyChanged(new PropertyChangedEventArgs(nameof(this.IsNotifying)));
+                }
+            }
+        }
 
         /// <summary>
         /// Notifies subscribers of the property change.
@@ -68,6 +87,7 @@
         protected override sealed void InsertItem(int index, T item)
         {
             PlatformProvider.Current.OnUIThread(() => this.InsertItemBase(index, item));
+            //  this.InsertItemBase(index, item);
         }
 
         /// <summary>

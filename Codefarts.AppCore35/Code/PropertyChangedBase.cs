@@ -7,12 +7,11 @@
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
 
-
     /// <summary>
     /// A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
     /// </summary>
 #if !ANDROID44
-          [DataContract]
+    [DataContract]
 #endif
     public class PropertyChangedBase : INotifyPropertyChanged
     {
@@ -48,15 +47,17 @@
         /// Notifies subscribers of the property change.
         /// </summary>
         /// <param name = "propertyName">Name of the property.</param>
-//#if NET || SILVERLIGHT || UNITY_5   
-        public virtual void NotifyOfPropertyChange(string propertyName) {
-//#else
-    //    public virtual void NotifyOfPropertyChange([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-  //      {
-//#endif
-            if (this.IsNotifying && this.PropertyChanged != null)
+//#if NET || SILVERLIGHT || UNITY_5
+        public virtual void NotifyOfPropertyChange(string propertyName)
+        {
+            //#else
+            //    public virtual void NotifyOfPropertyChange([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            //      {
+            //#endif
+            var handler = this.PropertyChanged;
+            if (this.IsNotifying && handler != null)
             {
-                PlatformProvider.Current.OnUIThread(() => this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
+                this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
             }
         }
 
@@ -100,6 +101,6 @@
             }
 
             return memberExpression.Member;
-        }                                   
+        }
     }
 }
