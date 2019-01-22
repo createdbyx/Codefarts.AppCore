@@ -16,7 +16,7 @@
     public class PropertyChangedBase : INotifyPropertyChanged
     {
         /// <summary>
-        /// Creates an instance of <see cref = "PropertyChangedBase" />.
+        /// Initializes a new instance of the <see cref="PropertyChangedBase"/> class.
         /// </summary>
         public PropertyChangedBase()
         {
@@ -29,15 +29,16 @@
         public virtual event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Enables/Disables property change notification.
-        /// Virtualized in order to help with document oriented view models.
+        /// Gets or sets a value indicating whether property changes will raise notification events.
         /// </summary>
         [XmlIgnore]
         public virtual bool IsNotifying { get; set; }
 
         /// <summary>
-        /// Raises a change notification indicating that all bindings should be refreshed.
+        /// Raises a change notification indicating that collection has changed.
         /// </summary>
+        /// <remarks>Useful for when you make sweeping changes to a collection and want any UI binding to update.
+        /// Property name will be <see cref="string.Empty"/>.</remarks>
         public virtual void Refresh()
         {
             this.NotifyOfPropertyChange(string.Empty);
@@ -46,14 +47,9 @@
         /// <summary>
         /// Notifies subscribers of the property change.
         /// </summary>
-        /// <param name = "propertyName">Name of the property.</param>
-//#if NET || SILVERLIGHT || UNITY_5
+        /// <param name="propertyName">Name of the property that changed.</param>
         public virtual void NotifyOfPropertyChange(string propertyName)
         {
-            //#else
-            //    public virtual void NotifyOfPropertyChange([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-            //      {
-            //#endif
             var handler = this.PropertyChanged;
             if (this.IsNotifying && handler != null)
             {
@@ -64,8 +60,8 @@
         /// <summary>
         /// Notifies subscribers of the property change.
         /// </summary>
-        /// <typeparam name = "TProperty">The type of the property.</typeparam>
-        /// <param name = "property">The property expression.</param>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="property">The property expression.</param>
         public void NotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> property)
         {
             this.NotifyOfPropertyChange(this.GetMemberInfo(property).Name);
@@ -85,14 +81,19 @@
             }
         }
 
+        /// <summary>
+        /// Gets the member information for a given expression.
+        /// </summary>
+        /// <param name="expression">The expression to get the member info from.</param>
+        /// <returns>A reference to a <see cref="MemberInfo"/> object.</returns>
         private MemberInfo GetMemberInfo(Expression expression)
         {
             var lambda = (LambdaExpression)expression;
 
             MemberExpression memberExpression;
-            if (lambda.Body is UnaryExpression)
+            var unaryExpression = lambda.Body as UnaryExpression;
+            if (unaryExpression != null)
             {
-                var unaryExpression = (UnaryExpression)lambda.Body;
                 memberExpression = (MemberExpression)unaryExpression.Operand;
             }
             else

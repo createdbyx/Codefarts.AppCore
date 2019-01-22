@@ -87,6 +87,58 @@
         }
 
         /// <summary>
+        /// Adds a collection of items.
+        /// </summary>
+        /// <param name="items">The items to be added.</param>
+        public virtual void AddRange(IEnumerable<T> items)
+        {
+            PlatformProvider.Current.OnUIThread(() =>
+            {
+                var previousNotificationSetting = this.IsNotifying;
+                this.IsNotifying = false;
+                var index = this.Count;
+                foreach (var item in items)
+                {
+                    this.InsertItemBase(index, item);
+                    index++;
+                }
+
+                this.IsNotifying = previousNotificationSetting;
+
+                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            });
+        }
+
+        /// <summary>
+        /// Removes the items from the collection.
+        /// </summary>
+        /// <param name="items">The items to be removed.</param>
+        public virtual void RemoveRange(IEnumerable<T> items)
+        {
+            PlatformProvider.Current.OnUIThread(() =>
+            {
+                var previousNotificationSetting = this.IsNotifying;
+                this.IsNotifying = false;
+                foreach (var item in items)
+                {
+                    var index = this.IndexOf(item);
+                    if (index >= 0)
+                    {
+                        this.RemoveItemBase(index);
+                    }
+                }
+
+                this.IsNotifying = previousNotificationSetting;
+
+                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            });
+        }
+
+        /// <summary>
         /// Inserts the item to the specified position.
         /// </summary>
         /// <param name="index">The index to insert at.</param>
@@ -194,58 +246,6 @@
             {
                 base.OnPropertyChanged(e);
             }
-        }
-
-        /// <summary>
-        /// Adds a collection of items.
-        /// </summary>
-        /// <param name="items">The items to be added.</param>
-        public virtual void AddRange(IEnumerable<T> items)
-        {
-            PlatformProvider.Current.OnUIThread(() =>
-            {
-                var previousNotificationSetting = this.IsNotifying;
-                this.IsNotifying = false;
-                var index = this.Count;
-                foreach (var item in items)
-                {
-                    this.InsertItemBase(index, item);
-                    index++;
-                }
-
-                this.IsNotifying = previousNotificationSetting;
-
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
-        }
-
-        /// <summary>
-        /// Removes the items from the collection.
-        /// </summary>
-        /// <param name="items">The items to be removed.</param>
-        public virtual void RemoveRange(IEnumerable<T> items)
-        {
-            PlatformProvider.Current.OnUIThread(() =>
-            {
-                var previousNotificationSetting = this.IsNotifying;
-                this.IsNotifying = false;
-                foreach (var item in items)
-                {
-                    var index = this.IndexOf(item);
-                    if (index >= 0)
-                    {
-                        this.RemoveItemBase(index);
-                    }
-                }
-
-                this.IsNotifying = previousNotificationSetting;
-
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
         }
     }
 }

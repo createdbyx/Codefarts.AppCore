@@ -1,6 +1,5 @@
 ﻿namespace Codefarts.AppCore
 {
-
     /// <summary>
     /// Access the current <see cref="IPlatformProvider"/>.
     /// </summary>
@@ -11,11 +10,12 @@
         /// </summary>
         static PlatformProvider()
         {
+            // assign the included default provider so current has a value.
             Current = new DefaultPlatformProvider();
         }
 
         /// <summary>
-        /// Gets or sets the current <see cref="IPlatformProvider"/>.
+        /// Gets or sets the current <see cref="IPlatformProvider"/> implementation.
         /// </summary>
         public static IPlatformProvider Current { get; set; }
     }
