@@ -12,10 +12,8 @@
     /// </summary>
     public interface IPlatformProvider
     {
-        #region Execute
-
         /// <summary>
-        /// Gets a value indicates whether or not the framework is in design-time mode.
+        /// Gets a value indicating whether or not the framework is in design-time mode.
         /// </summary>
         bool InDesignMode { get; }
 
@@ -46,7 +44,5 @@
         /// </summary>
         /// <param name="action">The action to execute.</param>
         void OnUIThread(Action action);
-
-        #endregion
     }
 }

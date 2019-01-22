@@ -13,7 +13,7 @@
 #endif
 
     /// <summary>
-    /// Default implementation of <see cref="IPlatformProvider"/> for Wpf 3.5 & 4.5.
+    /// Default implementation of <see cref="IPlatformProvider"/> for Wpf 3.5 and 4.5.
     /// </summary>
     public class WpfPlatformProvider : IPlatformProvider
     {

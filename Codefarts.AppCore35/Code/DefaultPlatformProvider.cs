@@ -27,7 +27,7 @@
         /// Executes the action asynchronously.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        /// <remarks>On .NET 4.0, 4.5 & Portable will Start a new Task via Task.Factory.StartNew.
+        /// <remarks>On .NET 4.0, 4.5 and Portable will Start a new Task via Task.Factory.StartNew.
         /// Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
         public void OnUIThreadAsync(Action action)
         {
@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="action">The action to execute.</param>
         /// <param name="args">Provides an list of arguments that will be passed to the action.</param>
-        /// <remarks>On .NET 4.0, 4.5 & Portable will Start a new Task via Task.Factory.StartNew.
+        /// <remarks>On .NET 4.0, 4.5 and Portable will Start a new Task via Task.Factory.StartNew.
         /// Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
         public void OnUIThreadAsync(Action<object[]> action, params object[] args)
         {
