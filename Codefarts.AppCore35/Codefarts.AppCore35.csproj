@@ -38,13 +38,27 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\BindableCollection.cs" />
-    <Compile Include="Code\DefaultPlatformProvider.cs" />
-    <Compile Include="Code\INotifyPropertyChangedEx.cs" />
-    <Compile Include="Code\IObservableCollection.cs" />
-    <Compile Include="Code\IPlatformProvider.cs" />
-    <Compile Include="Code\PlatformProvider.cs" />
-    <Compile Include="Code\PropertyChangedBase.cs" />
+    <Compile Include="..\Codefarts.AppCore\Code\BindableCollection.cs">
+      <Link>Code\BindableCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\DefaultPlatformProvider.cs">
+      <Link>Code\DefaultPlatformProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\INotifyPropertyChangedEx.cs">
+      <Link>Code\INotifyPropertyChangedEx.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\IObservableCollection.cs">
+      <Link>Code\IObservableCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\IPlatformProvider.cs">
+      <Link>Code\IPlatformProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\PlatformProvider.cs">
+      <Link>Code\PlatformProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\PropertyChangedBase.cs">
+      <Link>Code\PropertyChangedBase.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
