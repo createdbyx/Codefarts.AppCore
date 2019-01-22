@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Code\Key.snk" />
+    <None Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers">
