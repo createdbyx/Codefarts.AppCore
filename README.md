@@ -1,7 +1,9 @@
 # Codefarts.AppCore
 Provides basic application platform code.
 
-# Simple WPF app Example
+At it's core is the IPlatformProvider interface that provides the ability to run code on the UI thread as well as retrieve information about the environment the code is running under.
+
+#### Simple WPF app Example
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Application.Startup"/> event.
         /// </summary>
