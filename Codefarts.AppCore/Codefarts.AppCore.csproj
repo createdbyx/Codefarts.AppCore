@@ -52,6 +52,7 @@
     <Compile Include="Code\INotifyPropertyChangedEx.cs" />
     <Compile Include="Code\IObservableCollection.cs" />
     <Compile Include="Code\IPlatformProvider.cs" />
+    <Compile Include="Code\PlatformData.cs" />
     <Compile Include="Code\PlatformProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\PropertyChangedBase.cs" />

@@ -57,6 +57,9 @@
     <Compile Include="..\Codefarts.AppCore\Code\IPlatformProvider.cs">
       <Link>Code\IPlatformProvider.cs</Link>
     </Compile>
+    <Compile Include="..\Codefarts.AppCore\Code\PlatformData.cs">
+      <Link>Code\PlatformData.cs</Link>
+    </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\PlatformProvider.cs">
       <Link>Code\PlatformProvider.cs</Link>
     </Compile>

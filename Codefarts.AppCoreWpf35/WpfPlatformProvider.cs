@@ -87,5 +87,20 @@
                 application.Dispatcher.Invoke(action);
             }
         }
+
+        /// <summary>
+        /// Gets the platform data.
+        /// </summary>
+        /// <returns>
+        /// Return a new <see cref="T:Codefarts.AppCore.PlatformData"/> object containing information about the current platform and
+        /// environment that the code is running under.
+        /// </returns>
+        public PlatformData GetPlatformData()
+        {
+            return new PlatformData(
+                Environment.OSVersion.VersionString,
+                Environment.ProcessorCount,
+                Environment.CommandLine);
+        }
     }
 }

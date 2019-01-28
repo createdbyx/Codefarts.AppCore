@@ -44,5 +44,11 @@
         /// </summary>
         /// <param name="action">The action to execute.</param>
         void OnUIThread(Action action);
+
+        /// <summary>
+        /// Gets the platform data.
+        /// </summary>
+        /// <returns>Return a new <see cref="PlatformData"/> object containing information about the current platform and environment that the code is running under.</returns>
+        PlatformData GetPlatformData();
     }
 }

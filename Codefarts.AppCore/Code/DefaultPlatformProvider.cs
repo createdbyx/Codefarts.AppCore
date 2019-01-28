@@ -48,6 +48,17 @@
         }
 
         /// <summary>
+        /// Gets the platform data.
+        /// </summary>
+        /// <returns>
+        /// Return a new <see cref="PlatformData"/> object containing information about the current platform and environment that the code is running under.
+        /// </returns>
+        public PlatformData GetPlatformData()
+        {
+            return new PlatformData(null, 0, null);
+        }
+
+        /// <summary>
         /// Executes the action asynchronously.
         /// </summary>
         /// <param name="action">The action to execute.</param>
