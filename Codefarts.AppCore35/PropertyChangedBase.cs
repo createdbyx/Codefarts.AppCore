@@ -4,17 +4,10 @@
     using System.ComponentModel;
     using System.Linq.Expressions;
     using System.Reflection;
-#if !NETCOREAPP1_0 && !NETSTANDARD1_0
-    using System.Runtime.Serialization;
-    using System.Xml.Serialization;
-#endif
 
     /// <summary>
     /// A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
     /// </summary>
-#if !ANDROID44 && !NETCOREAPP1_0 && !NETSTANDARD1_0
-    [DataContract]
-#endif
     public class PropertyChangedBase : INotifyPropertyChanged
     {
         /// <summary>
@@ -33,9 +26,6 @@
         /// <summary>
         /// Gets or sets a value indicating whether property changes will raise notification events.
         /// </summary>
-#if !NETCOREAPP1_0 && !NETSTANDARD1_0 && !NETSTANDARD1_0
-        [XmlIgnore] 
-#endif
         public virtual bool IsNotifying
         {
             get; set;
