@@ -11,7 +11,7 @@
     /// </summary>
     /// <typeparam name="T">The type of elements contained in the collection.</typeparam>
     /// <remarks>Any action that changes the collection will happen synchronously on the UI Thread via <see cref="PlatformProvider.Current"/>.</remarks>
-    public class BindableCollection<T> : ObservableCollection<T>, IObservableCollection<T>
+    public class BindableCollection<T> : ObservableCollection<T>, IBindableCollection<T>, INotifyPropertyChangedEx
     {
         /// <summary>
         /// The backing filed for the <see cref="IsNotifying"/> property.
@@ -66,24 +66,36 @@
         {
             if (this.IsNotifying)
             {
-                PlatformProvider.Current.OnUIThread(() => this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
+                var provider = PlatformProvider.Current;
+                if (provider != null)
+                {
+                    provider.OnUIThread(() => this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
+                }
             }
         }
 
         /// <summary>
         /// Raises a change notification indicating that all bindings should be refreshed.
         /// </summary>
-        /// <remarks>Raises 2 <see cref="ObservableCollection{T}.PropertyChanged"/> events in the following order.
+        /// <remarks>Raises 2 <seealso cref="ObservableCollection{T}.PropertyChanged"/> events in the following order.
         /// <see cref="Collection{T}.Count"/>, then <see cref="Collection{T}.this"/>, then raises a <see cref="ObservableCollection{T}.CollectionChanged"/>
-        /// event with the <see cref="NotifyCollectionChangedAction.Reset"/> argument.</remarks>
+        /// event with the <seealso cref="NotifyCollectionChangedAction.Reset"/> argument.</remarks>
         public void Refresh()
         {
-            PlatformProvider.Current.OnUIThread(() =>
+            var provider = PlatformProvider.Current;
+            if (provider != null)
             {
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
+                provider.OnUIThread(() =>
+                {
+                    this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+                    this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+                    this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                });
+
+                return;
+            }
+
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         /// <summary>
@@ -92,23 +104,35 @@
         /// <param name="items">The items to be added.</param>
         public virtual void AddRange(IEnumerable<T> items)
         {
-            PlatformProvider.Current.OnUIThread(() =>
+            var provider = PlatformProvider.Current;
+            if (provider != null)
             {
-                var previousNotificationSetting = this.IsNotifying;
-                this.IsNotifying = false;
-                var index = this.Count;
-                foreach (var item in items)
-                {
-                    this.InsertItemBase(index, item);
-                    index++;
-                }
+                provider.OnUIThread(() => { this.AddRangeInternal(items); });
+                return;
+            }
 
-                this.IsNotifying = previousNotificationSetting;
+            this.AddRangeInternal(items);
+        }
 
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
+        /// <summary>
+        /// Adds a collection of items.
+        /// </summary>
+        /// <param name="items">The items to be added.</param>
+        /// <remarks>This method is private not meant to be called from outside the <see cref="BindableCollection{T}"/> class.</remarks>
+        private void AddRangeInternal(IEnumerable<T> items)
+        {
+            var previousNotificationSetting = this.IsNotifying;
+            this.IsNotifying = false;
+            foreach (var item in items)
+            {
+                this.InsertItemBase(this.Count, item);
+            }
+
+            this.IsNotifying = previousNotificationSetting;
+
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         /// <summary>
@@ -117,25 +141,39 @@
         /// <param name="items">The items to be removed.</param>
         public virtual void RemoveRange(IEnumerable<T> items)
         {
-            PlatformProvider.Current.OnUIThread(() =>
+            var provider = PlatformProvider.Current;
+            if (provider != null)
             {
-                var previousNotificationSetting = this.IsNotifying;
-                this.IsNotifying = false;
-                foreach (var item in items)
+                provider.OnUIThread(() => { this.RemoveRangeInternal(items); });
+                return;
+            }
+
+            this.RemoveRangeInternal(items);
+        }
+
+        /// <summary>
+        /// Removes the items from the collection.
+        /// </summary>
+        /// <param name="items">The items to be removed.</param>
+        /// <remarks>This method is private not meant to be called from outside the <see cref="BindableCollection{T}"/> class.</remarks>
+        private void RemoveRangeInternal(IEnumerable<T> items)
+        {
+            var previousNotificationSetting = this.IsNotifying;
+            this.IsNotifying = false;
+            foreach (var item in items)
+            {
+                var index = this.IndexOf(item);
+                if (index >= 0)
                 {
-                    var index = this.IndexOf(item);
-                    if (index >= 0)
-                    {
-                        this.RemoveItemBase(index);
-                    }
+                    this.RemoveItemBase(index);
                 }
+            }
 
-                this.IsNotifying = previousNotificationSetting;
+            this.IsNotifying = previousNotificationSetting;
 
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            });
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         /// <summary>
@@ -145,7 +183,14 @@
         /// <param name="item">The item to be inserted.</param>
         protected sealed override void InsertItem(int index, T item)
         {
-            PlatformProvider.Current.OnUIThread(() => this.InsertItemBase(index, item));
+            var provider = PlatformProvider.Current;
+            if (provider != null)
+            {
+                provider.OnUIThread(() => this.InsertItemBase(index, item));
+                return;
+            }
+
+            this.InsertItemBase(index, item);
         }
 
         /// <summary>
@@ -168,7 +213,14 @@
         /// <param name="item">The item to set.</param>
         protected sealed override void SetItem(int index, T item)
         {
-            PlatformProvider.Current.OnUIThread(() => this.SetItemBase(index, item));
+            var provider = PlatformProvider.Current;
+            if (provider != null)
+            {
+                provider.OnUIThread(() => this.SetItemBase(index, item));
+                return;
+            }
+
+            this.SetItemBase(index, item);
         }
 
         /// <summary>
@@ -190,7 +242,14 @@
         /// <param name="index">The position used to identify the item to remove.</param>
         protected sealed override void RemoveItem(int index)
         {
-            PlatformProvider.Current.OnUIThread(() => this.RemoveItemBase(index));
+            var provider = PlatformProvider.Current;
+            if (provider != null)
+            {
+                provider.OnUIThread(() => this.RemoveItemBase(index));
+                return;
+            }
+
+            this.RemoveItemBase(index);
         }
 
         /// <summary>
@@ -210,7 +269,14 @@
         /// </summary>
         protected sealed override void ClearItems()
         {
-            PlatformProvider.Current.OnUIThread(this.ClearItemsBase);
+            var provider = PlatformProvider.Current;
+            if (provider != null)
+            {
+                provider.OnUIThread(this.ClearItemsBase);
+                return;
+            }
+
+            this.ClearItemsBase();
         }
 
         /// <summary>

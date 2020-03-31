@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Codefarts.AppCore</name>
+    </assembly>
+    <members>
+        <member name="T:Codefarts.AppCore.BindableCollection`1">
+            <summary>
+            A base collection class that supports automatic UI thread marshaling.
+            </summary>
+            <typeparam name="T">The type of elements contained in the collection.</typeparam>
+            <remarks>Any action that changes the collection will happen synchronously on the UI Thread via <see cref="P:Codefarts.AppCore.PlatformProvider.Current"/>.</remarks>
+        </member>
+        <member name="F:Codefarts.AppCore.BindableCollection`1.isNotifying">
+            <summary>
+            The backing filed for the <see cref="P:Codefarts.AppCore.BindableCollection`1.IsNotifying"/> property.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.BindableCollection`1" /> class.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.BindableCollection`1" /> class.
+            </summary>
+            <param name="collection">The collection from which the elements are copied.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="collection" /> parameter cannot be <see langword="null" />.</exception>
+        </member>
+        <member name="P:Codefarts.AppCore.BindableCollection`1.IsNotifying">
+            <summary>
+            Gets or sets a value indicating whether property change notifications are raised.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.NotifyOfPropertyChange(System.String)">
+            <summary>
+            Notifies subscribers of the property change.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.Refresh">
+            <summary>
+            Raises a change notification indicating that all bindings should be refreshed.
+            </summary>
+            <remarks>Raises 2 <seealso cref="E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged"/> events in the following order.
+            <see cref="P:System.Collections.ObjectModel.Collection`1.Count"/>, then <see cref="P:System.Collections.ObjectModel.Collection`1.Item(System.Int32)"/>, then raises a <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged"/>
+            event with the <seealso cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset"/> argument.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a collection of items.
+            </summary>
+            <param name="items">The items to be added.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.AddRangeInternal(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a collection of items.
+            </summary>
+            <param name="items">The items to be added.</param>
+            <remarks>This method is private not meant to be called from outside the <see cref="T:Codefarts.AppCore.BindableCollection`1"/> class.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes the items from the collection.
+            </summary>
+            <param name="items">The items to be removed.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.RemoveRangeInternal(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes the items from the collection.
+            </summary>
+            <param name="items">The items to be removed.</param>
+            <remarks>This method is private not meant to be called from outside the <see cref="T:Codefarts.AppCore.BindableCollection`1"/> class.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Inserts the item to the specified position.
+            </summary>
+            <param name="index">The index to insert at.</param>
+            <param name="item">The item to be inserted.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.InsertItemBase(System.Int32,`0)">
+            <summary>
+            Exposes the base implementation of the <see cref="M:Codefarts.AppCore.BindableCollection`1.InsertItem(System.Int32,`0)" /> function.
+            </summary>
+            <param name="index">The index where insertion will take place.</param>
+            <param name="item">The item to be inserted.</param>
+            <remarks>
+            Used to avoid compiler warning regarding unverifiable code.
+            </remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.SetItem(System.Int32,`0)">
+            <summary>
+            Sets the item at the specified position.
+            </summary>
+            <param name="index">The index to set the item at.</param>
+            <param name="item">The item to set.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.SetItemBase(System.Int32,`0)">
+            <summary>
+            Exposes the base implementation of the <see cref="M:Codefarts.AppCore.BindableCollection`1.SetItem(System.Int32,`0)" /> function.
+            </summary>
+            <param name="index">The index where the item is to be set.</param>
+            <param name="item">The item to be set.</param>
+            <remarks>
+            Used to avoid compiler warning regarding unverifiable code.
+            </remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item at the specified position.
+            </summary>
+            <param name="index">The position used to identify the item to remove.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.RemoveItemBase(System.Int32)">
+            <summary>
+            Exposes the base implementation of the <see cref="M:Codefarts.AppCore.BindableCollection`1.RemoveItem(System.Int32)" /> function.
+            </summary>
+            <param name="index">The index of the item to be removed.</param>
+            <remarks>
+            Used to avoid compiler warning regarding unverifiable code.
+            </remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.ClearItems">
+            <summary>
+            Clears the items contained by the collection.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.ClearItemsBase">
+            <summary>
+            Exposes the base implementation of the <see cref="M:Codefarts.AppCore.BindableCollection`1.ClearItems" /> function.
+            </summary>
+            <remarks>
+            Used to avoid compiler warning regarding unverifiable code.
+            </remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged" /> event with the provided arguments.
+            </summary>
+            <param name="e">Arguments of the event being raised.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the PropertyChanged event with the provided arguments.
+            </summary>
+            <param name="e">The event data to report in the event.</param>
+        </member>
+        <member name="T:Codefarts.AppCore.DefaultPlatformProvider">
+            <summary>
+            Default implementation for <see cref="T:Codefarts.AppCore.IPlatformProvider"/> that does no platform enlightenment.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.DefaultPlatformProvider.InDesignMode">
+            <summary>
+            Gets a value indicating whether or not the framework is in design-time mode.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThreadAsync(System.Action)">
+            <summary>
+            Executes the action asynchronously.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <remarks>On .NET 4.0, 4.5 and Portable will Start a new Task via Task.Factory.StartNew.
+            Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThread(System.Action)">
+            <summary>
+            Executes the action immediately.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.GetPlatformData">
+            <summary>
+            Gets the platform data.
+            </summary>
+            <returns>
+            Return a new <see cref="T:Codefarts.AppCore.PlatformData"/> object containing information about the current platform and environment that the code is running under.
+            </returns>
+        </member>
+        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThreadAsync(System.Action{System.Object[]},System.Object[])">
+            <summary>
+            Executes the action asynchronously.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <param name="args">Provides an list of arguments that will be passed to the action.</param>
+            <remarks>On .NET 4.0, 4.5 and Portable will Start a new Task via Task.Factory.StartNew.
+            Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThread(System.Action{System.Object[]},System.Object[])">
+            <summary>
+            Executes the action immediately.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <param name="args">Provides an list of arguments that will be passed to the action.</param>
+        </member>
+        <member name="T:Codefarts.AppCore.IBindableCollection`1">
+            <summary>
+            Represents a collection that is observable.
+            </summary>
+            <typeparam name="T">The type of elements contained in the collection.</typeparam>
+        </member>
+        <member name="M:Codefarts.AppCore.IBindableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a collection of items.
+            </summary>
+            <param name="items">The items to be added.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.IBindableCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes the items from the collection.
+            </summary>
+            <param name="items">The items to be removed.</param>
+        </member>
+        <member name="T:Codefarts.AppCore.INotifyPropertyChangedEx">
+            <summary>
+            Extends <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> such that the change event can be raised by external parties.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.INotifyPropertyChangedEx.IsNotifying">
+            <summary>
+            Gets or sets a value indicating whether property changes will raise notification events.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.INotifyPropertyChangedEx.NotifyOfPropertyChange(System.String)">
+            <summary>
+            Notifies subscribers of the property change.
+            </summary>
+            <param name="propertyName">Name of the property that changed.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.INotifyPropertyChangedEx.Refresh">
+            <summary>
+            Raises a change notification indicating that collection has changed.
+            </summary>
+            <remarks>Useful for when you make sweeping changes to a collection and want any UI binding to update.</remarks>
+        </member>
+        <member name="T:Codefarts.AppCore.IPlatformProvider">
+            <summary>
+            Interface for platform specific operations that need enlightenment.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.IPlatformProvider.InDesignMode">
+            <summary>
+            Gets a value indicating whether or not the framework is in design-time mode.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThreadAsync(System.Action{System.Object[]},System.Object[])">
+            <summary>
+            Executes the action on the UI thread asynchronously.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <param name="args">Provides an list of arguments that will be passed to the action.</param>
+            <remarks>Implementation details are left up to the platform implementor weather in the form of Tasks or spawning a new thread.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThread(System.Action{System.Object[]},System.Object[])">
+            <summary>
+            Executes the action on the UI thread.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <param name="args">Provides an list of arguments that will be passed to the action.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThreadAsync(System.Action)">
+            <summary>
+            Executes the action on the UI thread asynchronously.
+            </summary>
+            <param name="action">The action to execute.</param>
+            <remarks>Implementation details are left up to the platform implementor weather in the form of Tasks or spawning a new thread.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThread(System.Action)">
+            <summary>
+            Executes the action on the UI thread.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.IPlatformProvider.GetPlatformData">
+            <summary>
+            Gets the platform data.
+            </summary>
+            <returns>Return a new <see cref="T:Codefarts.AppCore.PlatformData"/> object containing information about the current platform and environment that the code is running under.</returns>
+        </member>
+        <member name="T:Codefarts.AppCore.PlatformData">
+            <summary>
+            Contains properties that provide platform and environment data.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.PlatformData.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.PlatformData"/> class.
+            </summary>
+            <param name="operatingSystem">The operating system name.</param>
+            <param name="processorCount">The processor count.</param>
+            <param name="commandLine">The command line (if any) that was used to start the process.</param>
+        </member>
+        <member name="P:Codefarts.AppCore.PlatformData.OperatingSystem">
+            <summary>
+            Gets the operating system name.
+            </summary>
+            <remarks>
+            This string could also contain version and service pack info.
+            </remarks>
+        </member>
+        <member name="P:Codefarts.AppCore.PlatformData.ProcessorCount">
+            <summary>
+            Gets the number of processors on the platform.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.PlatformData.CommandLine">
+            <summary>
+            Gets the command line (if any) that was used to start the process.
+            </summary>
+        </member>
+        <member name="T:Codefarts.AppCore.PlatformProvider">
+            <summary>
+            Access the current <see cref="T:Codefarts.AppCore.IPlatformProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.PlatformProvider.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Codefarts.AppCore.PlatformProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.PlatformProvider.Current">
+            <summary>
+            Gets or sets the current <see cref="T:Codefarts.AppCore.IPlatformProvider"/> implementation.
+            </summary>
+        </member>
+        <member name="T:Codefarts.AppCore.PropertyChangedBase">
+            <summary>
+            A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.PropertyChangedBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.PropertyChangedBase"/> class.
+            </summary>
+        </member>
+        <member name="E:Codefarts.AppCore.PropertyChangedBase.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.PropertyChangedBase.IsNotifying">
+            <summary>
+            Gets or sets a value indicating whether property changes will raise notification events.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.PropertyChangedBase.Refresh">
+            <summary>
+            Raises a change notification indicating that collection has changed.
+            </summary>
+            <remarks>Useful for when you make sweeping changes to a collection and want any UI binding to update.
+            Property name will be <see cref="F:System.String.Empty"/>.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.PropertyChangedBase.NotifyOfPropertyChange(System.String)">
+            <summary>
+            Notifies subscribers of the property change.
+            </summary>
+            <param name="propertyName">Name of the property that changed.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.PropertyChangedBase.NotifyOfPropertyChange``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Notifies subscribers of the property change.
+            </summary>
+            <typeparam name="TProperty">The type of the property.</typeparam>
+            <param name="property">The property expression.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.PropertyChangedBase.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Codefarts.AppCore.PropertyChangedBase.PropertyChanged" /> event directly.
+            </summary>
+            <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Codefarts.AppCore.PropertyChangedBase.GetMemberInfo(System.Linq.Expressions.Expression)">
+            <summary>
+            Gets the member information for a given expression.
+            </summary>
+            <param name="expression">The expression to get the member info from.</param>
+            <returns>A reference to a <see cref="T:System.Reflection.MemberInfo"/> object.</returns>
+        </member>
+    </members>
+</doc>

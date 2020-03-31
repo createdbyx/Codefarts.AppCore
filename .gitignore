@@ -13,3 +13,7 @@ Codefarts.AppCore45/bin/
 Codefarts.AppCore35/bin/
 .vs/
 codealike.json
+AppCoreTests/bin/
+AppCoreTests/obj/
+Codefarts.AppCore_NETCore/bin/
+Codefarts.AppCore_NETCore/obj/

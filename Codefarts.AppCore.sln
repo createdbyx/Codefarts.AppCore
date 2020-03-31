@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore", "Codefarts.AppCore\Codefarts.AppCore.csproj", "{FFB13984-A2ED-4FD0-A8C5-F6A66E86D6F0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore35", "Codefarts.AppCore35\Codefarts.AppCore35.csproj", "{6714CE66-9D93-4D02-900C-73A2313560F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore45", "Codefarts.AppCore45\Codefarts.AppCore45.csproj", "{28384486-2319-46EE-AF82-35C9E19372A5}"
@@ -13,16 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf35", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf45", "Codefarts.AppCoreWpf45\Codefarts.AppCoreWpf45.csproj", "{230D21B4-B4B2-4D1F-99D7-140F5A275996}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCoreTests", "AppCoreTests\AppCoreTests.csproj", "{E412DE82-A945-4911-949D-B5E0B14FB648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore_NETCore1", "Codefarts.AppCore_NETCore\Codefarts.AppCore_NETCore1.csproj", "{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FFB13984-A2ED-4FD0-A8C5-F6A66E86D6F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFB13984-A2ED-4FD0-A8C5-F6A66E86D6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFB13984-A2ED-4FD0-A8C5-F6A66E86D6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFB13984-A2ED-4FD0-A8C5-F6A66E86D6F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6714CE66-9D93-4D02-900C-73A2313560F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6714CE66-9D93-4D02-900C-73A2313560F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6714CE66-9D93-4D02-900C-73A2313560F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +37,14 @@ Global
 		{230D21B4-B4B2-4D1F-99D7-140F5A275996}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{230D21B4-B4B2-4D1F-99D7-140F5A275996}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{230D21B4-B4B2-4D1F-99D7-140F5A275996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E412DE82-A945-4911-949D-B5E0B14FB648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E412DE82-A945-4911-949D-B5E0B14FB648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E412DE82-A945-4911-949D-B5E0B14FB648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E412DE82-A945-4911-949D-B5E0B14FB648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

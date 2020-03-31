@@ -1,13 +1,12 @@
 ﻿namespace Codefarts.AppCore
 {
     using System.Collections.Generic;
-    using System.Collections.Specialized;
 
     /// <summary>
     /// Represents a collection that is observable.
     /// </summary>
     /// <typeparam name="T">The type of elements contained in the collection.</typeparam>
-    public interface IObservableCollection<T> : IList<T>, INotifyPropertyChangedEx, INotifyCollectionChanged
+    public interface IBindableCollection<T>
     {
         /// <summary>
         /// Adds a collection of items.

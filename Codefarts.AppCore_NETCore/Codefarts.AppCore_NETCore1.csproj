@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <RootNamespace>Codefarts.AppCore</RootNamespace>
+    <AssemblyName>Codefarts.AppCore</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>P:\Code Projects\Codefarts.AppCore\Codefarts.AppCore_NETCore\Codefarts.AppCore.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\DefaultPlatformProvider.cs" Link="DefaultPlatformProvider.cs" />
+    <Compile Include="..\Codefarts.AppCore35\IBindableCollection.cs" Link="IBindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\INotifyPropertyChangedEx.cs" Link="INotifyPropertyChangedEx.cs" />
+    <Compile Include="..\Codefarts.AppCore35\IPlatformProvider.cs" Link="IPlatformProvider.cs" />
+    <Compile Include="..\Codefarts.AppCore35\PlatformData.cs" Link="PlatformData.cs" />
+    <Compile Include="..\Codefarts.AppCore35\PlatformProvider.cs" Link="PlatformProvider.cs" />
+    <Compile Include="..\Codefarts.AppCore35\PropertyChangedBase.cs" Link="PropertyChangedBase.cs" />
+  </ItemGroup>
+
+</Project>
