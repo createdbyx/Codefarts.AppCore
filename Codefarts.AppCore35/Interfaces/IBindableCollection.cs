@@ -1,4 +1,4 @@
-﻿namespace Codefarts.AppCore
+﻿namespace Codefarts.AppCore.Interfaces
 {
     using System.Collections.Generic;
 

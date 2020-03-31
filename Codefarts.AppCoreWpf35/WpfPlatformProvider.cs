@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Windows;
+    using Codefarts.AppCore.Interfaces;
 
 #if NET40 || PORTABLE
     using System.Threading.Tasks;

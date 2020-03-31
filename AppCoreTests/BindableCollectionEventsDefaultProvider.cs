@@ -4,12 +4,14 @@ namespace AppCoreTests
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using Codefarts.AppCore;
+    using Codefarts.AppCore.Interfaces;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class BindableCollection_Events_DefaultProvider
+    [TestCategory("Collections Events")]
+    public class BindableCollectionEventsDefaultProvider
     {
-        private IPlatformProvider provider;
+        protected IPlatformProvider provider;
         Dictionary<NotifyCollectionChangedAction, int> raisedEvents;
 
         [TestInitialize]
@@ -28,7 +30,6 @@ namespace AppCoreTests
         [TestCleanup]
         public virtual void TestCleanup()
         {
-            PlatformProvider.Current = this.provider;
             this.raisedEvents.Clear();
             this.raisedEvents = null;
         }
@@ -45,7 +46,7 @@ namespace AppCoreTests
         [TestMethod]
         public void Add()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
             for (var i = 0; i < 6; i++)
             {
@@ -58,7 +59,7 @@ namespace AppCoreTests
         [TestMethod]
         public void AddRange()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
             this.CheckEventCount(0, 0, 0, 0, expectedResets: 1);
@@ -67,7 +68,7 @@ namespace AppCoreTests
         [TestMethod]
         public void ClearItems()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
 
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
@@ -80,7 +81,7 @@ namespace AppCoreTests
         [TestMethod]
         public void Remove()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
 
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
@@ -94,7 +95,7 @@ namespace AppCoreTests
         [TestMethod]
         public void SetItem()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
 
             list.AddRange(new int[6]);
@@ -110,7 +111,7 @@ namespace AppCoreTests
         [TestMethod]
         public void InsertItem()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
             for (var i = 0; i < 6; i++)
             {
@@ -123,7 +124,7 @@ namespace AppCoreTests
         [TestMethod]
         public void RemoveItems()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.CollectionChanged += (s, e) => { this.raisedEvents[e.Action] += 1; };
 
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });

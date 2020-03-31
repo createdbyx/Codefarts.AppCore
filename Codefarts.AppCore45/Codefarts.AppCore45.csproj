@@ -54,20 +54,26 @@
     <Compile Include="..\Codefarts.AppCore35\DefaultPlatformProvider.cs">
       <Link>DefaultPlatformProvider.cs</Link>
     </Compile>
-    <Compile Include="..\Codefarts.AppCore35\IBindableCollection.cs">
-      <Link>IBindableCollection.cs</Link>
+    <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
     </Compile>
-    <Compile Include="..\Codefarts.AppCore35\INotifyPropertyChangedEx.cs">
-      <Link>INotifyPropertyChangedEx.cs</Link>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\IBindableCollection.cs">
+      <Link>Interfaces\IBindableCollection.cs</Link>
     </Compile>
-    <Compile Include="..\Codefarts.AppCore35\IPlatformProvider.cs">
-      <Link>IPlatformProvider.cs</Link>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs">
+      <Link>Interfaces\ILocalizationProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\INotifyPropertyChangedEx.cs">
+      <Link>Interfaces\INotifyPropertyChangedEx.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\IPlatformProvider.cs">
+      <Link>Interfaces\IPlatformProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\ISettingsProvider.cs">
+      <Link>Interfaces\ISettingsProvider.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore35\PlatformData.cs">
       <Link>PlatformData.cs</Link>
-    </Compile>
-    <Compile Include="..\Codefarts.AppCore35\PlatformProvider.cs">
-      <Link>PlatformProvider.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore35\PropertyChangedBase.cs">
       <Link>PropertyChangedBase.cs</Link>
@@ -81,5 +87,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

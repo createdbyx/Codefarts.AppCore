@@ -17,3 +17,5 @@ AppCoreTests/bin/
 AppCoreTests/obj/
 Codefarts.AppCore_NETCore/bin/
 Codefarts.AppCore_NETCore/obj/
+Codefarts.AppCoreNETStd/obj/
+Codefarts.AppCoreNETStd/bin/

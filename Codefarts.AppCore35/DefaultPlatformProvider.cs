@@ -1,6 +1,8 @@
 ﻿namespace Codefarts.AppCore
 {
     using System;
+    using Codefarts.AppCore.Interfaces;
+
 #if NET40 || PORTABLE || NET45
     using System.Threading.Tasks;
 #else

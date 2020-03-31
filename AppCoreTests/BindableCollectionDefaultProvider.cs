@@ -1,12 +1,14 @@
 namespace AppCoreTests
 {
     using Codefarts.AppCore;
+    using Codefarts.AppCore.Interfaces;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class BindableCollection_DefaultProvider
+    [TestCategory("Collections")]
+    public class BindableCollectionDefaultProvider
     {
-        private IPlatformProvider provider;
+        protected IPlatformProvider provider;
 
         [TestInitialize]
         public virtual void TestInit()
@@ -17,13 +19,12 @@ namespace AppCoreTests
         [TestCleanup]
         public virtual void TestCleanup()
         {
-            PlatformProvider.Current = this.provider;
         }
 
         [TestMethod]
         public void Add()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             for (var i = 0; i < 6; i++)
             {
                 list.Add(i);
@@ -40,7 +41,7 @@ namespace AppCoreTests
         [TestMethod]
         public void AddRange()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
             Assert.AreEqual(6, list.Count);
         }
@@ -48,7 +49,7 @@ namespace AppCoreTests
         [TestMethod]
         public void ClearItems()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
             Assert.AreEqual(6, list.Count);
             list.Clear();
@@ -58,7 +59,7 @@ namespace AppCoreTests
         [TestMethod]
         public void Remove()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
             Assert.AreEqual(6, list.Count);
 
@@ -69,7 +70,7 @@ namespace AppCoreTests
         [TestMethod]
         public void SetItem()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.AddRange(new int[6]);
             for (var i = 0; i < list.Count; i++)
             {
@@ -87,7 +88,7 @@ namespace AppCoreTests
         [TestMethod]
         public void InsertItem()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             for (var i = 0; i < 6; i++)
             {
                 list.Insert(i, i);
@@ -104,7 +105,7 @@ namespace AppCoreTests
         [TestMethod]
         public void RemoveItems()
         {
-            var list = new BindableCollection<int>();
+            var list = new BindableCollection<int>(this.provider);
             list.AddRange(new[] { 0, 1, 2, 3, 4, 5 });
             Assert.AreEqual(6, list.Count);
 

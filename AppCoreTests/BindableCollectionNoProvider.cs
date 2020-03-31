@@ -1,16 +1,16 @@
 namespace AppCoreTests
 {
-    using Codefarts.AppCore;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class BindableCollection_Events_No_Provider : BindableCollection_Events_DefaultProvider
+    [TestCategory("Collections")]
+    public class BindableCollectionNoProvider : BindableCollectionDefaultProvider
     {
         [TestInitialize]
         public override void TestInit()
         {
             base.TestInit();
-            PlatformProvider.Current = null;
+            this.provider = null;
         }
     }
 }

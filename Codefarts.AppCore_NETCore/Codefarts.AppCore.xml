@@ -9,11 +9,16 @@
             A base collection class that supports automatic UI thread marshaling.
             </summary>
             <typeparam name="T">The type of elements contained in the collection.</typeparam>
-            <remarks>Any action that changes the collection will happen synchronously on the UI Thread via <see cref="P:Codefarts.AppCore.PlatformProvider.Current"/>.</remarks>
+            <remarks>Any action that changes the collection will happen synchronously on the UI Thread via a <see cref="T:Codefarts.AppCore.Interfaces.IPlatformProvider"/> implementation if available.</remarks>
         </member>
         <member name="F:Codefarts.AppCore.BindableCollection`1.isNotifying">
             <summary>
             The backing filed for the <see cref="P:Codefarts.AppCore.BindableCollection`1.IsNotifying"/> property.
+            </summary>
+        </member>
+        <member name="F:Codefarts.AppCore.BindableCollection`1.platformProvider">
+            <summary>
+            Holds a reference to a platform provider.
             </summary>
         </member>
         <member name="M:Codefarts.AppCore.BindableCollection`1.#ctor">
@@ -21,10 +26,24 @@
             Initializes a new instance of the <see cref="T:Codefarts.AppCore.BindableCollection`1" /> class.
             </summary>
         </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.#ctor(Codefarts.AppCore.Interfaces.IPlatformProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.BindableCollection`1" /> class.
+            </summary>
+            <param name="platformProvider">A reference to a platform provider implementation.</param>
+        </member>
         <member name="M:Codefarts.AppCore.BindableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Initializes a new instance of the <see cref="T:Codefarts.AppCore.BindableCollection`1" /> class.
             </summary>
+            <param name="collection">The collection from which the elements are copied.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="collection" /> parameter cannot be <see langword="null" />.</exception>
+        </member>
+        <member name="M:Codefarts.AppCore.BindableCollection`1.#ctor(Codefarts.AppCore.Interfaces.IPlatformProvider,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.BindableCollection`1" /> class.
+            </summary>
+            <param name="platformProvider">A reference to a platform provider implementation.</param>
             <param name="collection">The collection from which the elements are copied.</param>
             <exception cref="T:System.ArgumentNullException">The <paramref name="collection" /> parameter cannot be <see langword="null" />.</exception>
         </member>
@@ -149,7 +168,7 @@
         </member>
         <member name="T:Codefarts.AppCore.DefaultPlatformProvider">
             <summary>
-            Default implementation for <see cref="T:Codefarts.AppCore.IPlatformProvider"/> that does no platform enlightenment.
+            Default implementation for <see cref="T:Codefarts.AppCore.Interfaces.IPlatformProvider"/> that does no platform enlightenment.
             </summary>
         </member>
         <member name="P:Codefarts.AppCore.DefaultPlatformProvider.InDesignMode">
@@ -195,57 +214,89 @@
             <param name="action">The action to execute.</param>
             <param name="args">Provides an list of arguments that will be passed to the action.</param>
         </member>
-        <member name="T:Codefarts.AppCore.IBindableCollection`1">
+        <member name="T:Codefarts.AppCore.Interfaces.IBindableCollection`1">
             <summary>
             Represents a collection that is observable.
             </summary>
             <typeparam name="T">The type of elements contained in the collection.</typeparam>
         </member>
-        <member name="M:Codefarts.AppCore.IBindableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Codefarts.AppCore.Interfaces.IBindableCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Adds a collection of items.
             </summary>
             <param name="items">The items to be added.</param>
         </member>
-        <member name="M:Codefarts.AppCore.IBindableCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
+        <member name="M:Codefarts.AppCore.Interfaces.IBindableCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Removes the items from the collection.
             </summary>
             <param name="items">The items to be removed.</param>
         </member>
-        <member name="T:Codefarts.AppCore.INotifyPropertyChangedEx">
+        <member name="T:Codefarts.AppCore.Interfaces.ILocalizationProvider">
+            <summary>
+            Provides a date source interface.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.ILocalizationProvider.GetString(System.String)">
+            <summary>Gets a localized string.</summary>
+            <param name="key">The key for the localized string.</param>
+            <returns>The value of the localized string.</returns>
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.ILocalizationProvider.Register(System.Globalization.CultureInfo,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Registers a dataset of localized strings from a <see cref="T:System.Collections.Generic.IDictionary`2"/> reference.
+            </summary>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> that the strings will be registered into.</param>
+            <param name="entries">A <see cref="T:System.Collections.Generic.IDictionary`2"/> containing the localized strings to add.</param>
+            <remarks>This method will override any existing key values.</remarks>
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.ILocalizationProvider.Register(System.Globalization.CultureInfo,System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean)">
+            <summary>
+            Registers a dataset of localized strings from a <see cref="T:System.Collections.Generic.IDictionary`2"/> reference.
+            </summary>
+            <param name="culture">
+            The <see cref="T:System.Globalization.CultureInfo"/> that the strings will be registered into.
+            </param>
+            <param name="entries">
+            A <see cref="T:System.Collections.Generic.IDictionary`2"/> containing the localized strings to add.
+            </param>
+            <param name="replace">
+            If true existing key values will be replaced. Otherwise the existing values will be left as they are.
+            </param>
+        </member>
+        <member name="T:Codefarts.AppCore.Interfaces.INotifyPropertyChangedEx">
             <summary>
             Extends <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> such that the change event can be raised by external parties.
             </summary>
         </member>
-        <member name="P:Codefarts.AppCore.INotifyPropertyChangedEx.IsNotifying">
+        <member name="P:Codefarts.AppCore.Interfaces.INotifyPropertyChangedEx.IsNotifying">
             <summary>
             Gets or sets a value indicating whether property changes will raise notification events.
             </summary>
         </member>
-        <member name="M:Codefarts.AppCore.INotifyPropertyChangedEx.NotifyOfPropertyChange(System.String)">
+        <member name="M:Codefarts.AppCore.Interfaces.INotifyPropertyChangedEx.NotifyOfPropertyChange(System.String)">
             <summary>
             Notifies subscribers of the property change.
             </summary>
             <param name="propertyName">Name of the property that changed.</param>
         </member>
-        <member name="M:Codefarts.AppCore.INotifyPropertyChangedEx.Refresh">
+        <member name="M:Codefarts.AppCore.Interfaces.INotifyPropertyChangedEx.Refresh">
             <summary>
             Raises a change notification indicating that collection has changed.
             </summary>
             <remarks>Useful for when you make sweeping changes to a collection and want any UI binding to update.</remarks>
         </member>
-        <member name="T:Codefarts.AppCore.IPlatformProvider">
+        <member name="T:Codefarts.AppCore.Interfaces.IPlatformProvider">
             <summary>
             Interface for platform specific operations that need enlightenment.
             </summary>
         </member>
-        <member name="P:Codefarts.AppCore.IPlatformProvider.InDesignMode">
+        <member name="P:Codefarts.AppCore.Interfaces.IPlatformProvider.InDesignMode">
             <summary>
             Gets a value indicating whether or not the framework is in design-time mode.
             </summary>
         </member>
-        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThreadAsync(System.Action{System.Object[]},System.Object[])">
+        <member name="M:Codefarts.AppCore.Interfaces.IPlatformProvider.OnUIThreadAsync(System.Action{System.Object[]},System.Object[])">
             <summary>
             Executes the action on the UI thread asynchronously.
             </summary>
@@ -253,31 +304,97 @@
             <param name="args">Provides an list of arguments that will be passed to the action.</param>
             <remarks>Implementation details are left up to the platform implementor weather in the form of Tasks or spawning a new thread.</remarks>
         </member>
-        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThread(System.Action{System.Object[]},System.Object[])">
+        <member name="M:Codefarts.AppCore.Interfaces.IPlatformProvider.OnUIThread(System.Action{System.Object[]},System.Object[])">
             <summary>
             Executes the action on the UI thread.
             </summary>
             <param name="action">The action to execute.</param>
             <param name="args">Provides an list of arguments that will be passed to the action.</param>
         </member>
-        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThreadAsync(System.Action)">
+        <member name="M:Codefarts.AppCore.Interfaces.IPlatformProvider.OnUIThreadAsync(System.Action)">
             <summary>
             Executes the action on the UI thread asynchronously.
             </summary>
             <param name="action">The action to execute.</param>
             <remarks>Implementation details are left up to the platform implementor weather in the form of Tasks or spawning a new thread.</remarks>
         </member>
-        <member name="M:Codefarts.AppCore.IPlatformProvider.OnUIThread(System.Action)">
+        <member name="M:Codefarts.AppCore.Interfaces.IPlatformProvider.OnUIThread(System.Action)">
             <summary>
             Executes the action on the UI thread.
             </summary>
             <param name="action">The action to execute.</param>
         </member>
-        <member name="M:Codefarts.AppCore.IPlatformProvider.GetPlatformData">
+        <member name="M:Codefarts.AppCore.Interfaces.IPlatformProvider.GetPlatformData">
             <summary>
             Gets the platform data.
             </summary>
             <returns>Return a new <see cref="T:Codefarts.AppCore.PlatformData"/> object containing information about the current platform and environment that the code is running under.</returns>
+        </member>
+        <member name="T:Codefarts.AppCore.Interfaces.ISettingsProvider">
+            <summary>
+            Provides an interface for storing and retrieving settings.
+            </summary>
+        </member>
+        <member name="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged">
+            <summary>
+            Occurs when a setting is changed.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.ISettingsProvider.GetSetting``1(System.String,``0)">
+            <summary>
+            Gets a setting value.
+            </summary>
+            <typeparam name="T">The type to be returned.</typeparam>
+            <param name="key">The name of the setting.</param>
+            <param name="defaultValue">The default value to return if there was a problem returning the setting value.</param>
+            <returns>The value of the setting.</returns>
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.ISettingsProvider.TryGetSetting``1(System.String,``0@)">
+            <summary>
+            Tries the get a setting value.
+            </summary>
+            <typeparam name="T">The type to be returned.</typeparam>
+            <param name="key">The name of the setting.</param>
+            <param name="value">The setting value to be returned.</param>
+            <returns>true if successful; otherwise false.</returns>
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.ISettingsProvider.SetSetting``1(System.String,``0)">
+            <summary>
+            Sets a setting value.
+            </summary>
+            <typeparam name="T">The type to be set.</typeparam>
+            <param name="key">The name of the setting.</param>
+            <param name="value">The setting value to store.</param>
+        </member>
+        <member name="T:Codefarts.AppCore.Interfaces.SettingChangedEventHandler">
+            <summary>
+            Provides a delegate for the <see cref="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged"/> event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments containing information about what setting changed.</param>
+        </member>
+        <member name="T:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs">
+            <summary>
+            Provides an argument class for the <seealso cref="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged"/> event.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs.#ctor(System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs"/> class.
+            </summary>
+            <param name="key">The setting key.</param>
+            <param name="value">The value that changed.</param>
+        </member>
+        <member name="P:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs.Key">
+            <summary>
+            Gets or sets the setting key.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs.Value">
+            <summary>
+            Gets the value that changed.
+            </summary>
         </member>
         <member name="T:Codefarts.AppCore.PlatformData">
             <summary>
@@ -308,21 +425,6 @@
         <member name="P:Codefarts.AppCore.PlatformData.CommandLine">
             <summary>
             Gets the command line (if any) that was used to start the process.
-            </summary>
-        </member>
-        <member name="T:Codefarts.AppCore.PlatformProvider">
-            <summary>
-            Access the current <see cref="T:Codefarts.AppCore.IPlatformProvider"/>.
-            </summary>
-        </member>
-        <member name="M:Codefarts.AppCore.PlatformProvider.#cctor">
-            <summary>
-            Initializes static members of the <see cref="T:Codefarts.AppCore.PlatformProvider"/> class.
-            </summary>
-        </member>
-        <member name="P:Codefarts.AppCore.PlatformProvider.Current">
-            <summary>
-            Gets or sets the current <see cref="T:Codefarts.AppCore.IPlatformProvider"/> implementation.
             </summary>
         </member>
         <member name="T:Codefarts.AppCore.PropertyChangedBase">
@@ -377,6 +479,21 @@
             </summary>
             <param name="expression">The expression to get the member info from.</param>
             <returns>A reference to a <see cref="T:System.Reflection.MemberInfo"/> object.</returns>
+        </member>
+        <member name="T:Codefarts.CoreProjectCode.ExtensionMethods">
+            <summary>
+            provides extension methods for the <see cref="T:Codefarts.AppCore.Interfaces.ISettingsProvider"/> type.
+            </summary>
+        </member>
+        <member name="M:Codefarts.CoreProjectCode.ExtensionMethods.GetString(Codefarts.AppCore.Interfaces.ILocalizationProvider,System.String,System.String)">
+            <summary>Gets the localized string.</summary>
+            <summary>
+            Gets a localized string.
+            </summary>
+            <param name="provider">The localization provider reference.</param>
+            <param name="name">The name of the localized string.</param>
+            <param name="defaultValue">The default value to return if unable to retrieve the localized string.</param>
+            <returns>The value of the localized string.</returns>
         </member>
     </members>
 </doc>

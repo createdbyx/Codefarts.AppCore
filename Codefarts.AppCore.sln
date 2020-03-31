@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf35", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf45", "Codefarts.AppCoreWpf45\Codefarts.AppCoreWpf45.csproj", "{230D21B4-B4B2-4D1F-99D7-140F5A275996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCoreTests", "AppCoreTests\AppCoreTests.csproj", "{E412DE82-A945-4911-949D-B5E0B14FB648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCoreTests", "AppCoreTests\AppCoreTests.csproj", "{E412DE82-A945-4911-949D-B5E0B14FB648}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore_NETCore1", "Codefarts.AppCore_NETCore\Codefarts.AppCore_NETCore1.csproj", "{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codefarts.AppCore_NETCore1", "Codefarts.AppCore_NETCore\Codefarts.AppCore_NETCore1.csproj", "{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreNETStd1", "Codefarts.AppCoreNETStd\Codefarts.AppCoreNETStd1.csproj", "{CB414160-74AE-466E-8C52-C3B7BBC8C789}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB414160-74AE-466E-8C52-C3B7BBC8C789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB414160-74AE-466E-8C52-C3B7BBC8C789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB414160-74AE-466E-8C52-C3B7BBC8C789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB414160-74AE-466E-8C52-C3B7BBC8C789}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

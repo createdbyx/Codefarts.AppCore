@@ -5,18 +5,24 @@
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.ComponentModel;
+    using Codefarts.AppCore.Interfaces;
 
     /// <summary>
     /// A base collection class that supports automatic UI thread marshaling.
     /// </summary>
     /// <typeparam name="T">The type of elements contained in the collection.</typeparam>
-    /// <remarks>Any action that changes the collection will happen synchronously on the UI Thread via <see cref="PlatformProvider.Current"/>.</remarks>
+    /// <remarks>Any action that changes the collection will happen synchronously on the UI Thread via a <see cref="IPlatformProvider"/> implementation if available.</remarks>
     public class BindableCollection<T> : ObservableCollection<T>, IBindableCollection<T>, INotifyPropertyChangedEx
     {
         /// <summary>
         /// The backing filed for the <see cref="IsNotifying"/> property.
         /// </summary>
         private bool isNotifying;
+
+        /// <summary>
+        /// Holds a reference to a platform provider.
+        /// </summary>
+        private IPlatformProvider platformProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BindableCollection{T}" /> class.
@@ -29,12 +35,35 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="BindableCollection{T}" /> class.
         /// </summary>
+        /// <param name="platformProvider">A reference to a platform provider implementation.</param>
+        public BindableCollection(IPlatformProvider platformProvider)
+        {
+            this.IsNotifying = true;
+            this.platformProvider = platformProvider;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BindableCollection{T}" /> class.
+        /// </summary>
         /// <param name="collection">The collection from which the elements are copied.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="collection" /> parameter cannot be <see langword="null" />.</exception>
         public BindableCollection(IEnumerable<T> collection)
             : base(collection)
         {
             this.IsNotifying = true;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BindableCollection{T}" /> class.
+        /// </summary>
+        /// <param name="platformProvider">A reference to a platform provider implementation.</param>
+        /// <param name="collection">The collection from which the elements are copied.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="collection" /> parameter cannot be <see langword="null" />.</exception>
+        public BindableCollection(IPlatformProvider platformProvider, IEnumerable<T> collection)
+            : base(collection)
+        {
+            this.IsNotifying = true;
+            this.platformProvider = platformProvider;
         }
 
         /// <summary>
@@ -66,10 +95,9 @@
         {
             if (this.IsNotifying)
             {
-                var provider = PlatformProvider.Current;
-                if (provider != null)
+                if (this.platformProvider != null)
                 {
-                    provider.OnUIThread(() => this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
+                    this.platformProvider.OnUIThread(() => this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName)));
                 }
             }
         }
@@ -82,15 +110,14 @@
         /// event with the <seealso cref="NotifyCollectionChangedAction.Reset"/> argument.</remarks>
         public void Refresh()
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(() =>
-                {
-                    this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-                    this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-                    this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-                });
+                this.platformProvider.OnUIThread(() =>
+               {
+                   this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+                   this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+                   this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+               });
 
                 return;
             }
@@ -104,10 +131,9 @@
         /// <param name="items">The items to be added.</param>
         public virtual void AddRange(IEnumerable<T> items)
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(() => { this.AddRangeInternal(items); });
+                this.platformProvider.OnUIThread(() => { this.AddRangeInternal(items); });
                 return;
             }
 
@@ -141,10 +167,9 @@
         /// <param name="items">The items to be removed.</param>
         public virtual void RemoveRange(IEnumerable<T> items)
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(() => { this.RemoveRangeInternal(items); });
+                this.platformProvider.OnUIThread(() => { this.RemoveRangeInternal(items); });
                 return;
             }
 
@@ -183,10 +208,9 @@
         /// <param name="item">The item to be inserted.</param>
         protected sealed override void InsertItem(int index, T item)
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(() => this.InsertItemBase(index, item));
+                this.platformProvider.OnUIThread(() => this.InsertItemBase(index, item));
                 return;
             }
 
@@ -213,10 +237,9 @@
         /// <param name="item">The item to set.</param>
         protected sealed override void SetItem(int index, T item)
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(() => this.SetItemBase(index, item));
+                this.platformProvider.OnUIThread(() => this.SetItemBase(index, item));
                 return;
             }
 
@@ -242,10 +265,9 @@
         /// <param name="index">The position used to identify the item to remove.</param>
         protected sealed override void RemoveItem(int index)
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(() => this.RemoveItemBase(index));
+                this.platformProvider.OnUIThread(() => this.RemoveItemBase(index));
                 return;
             }
 
@@ -269,10 +291,9 @@
         /// </summary>
         protected sealed override void ClearItems()
         {
-            var provider = PlatformProvider.Current;
-            if (provider != null)
+            if (this.platformProvider != null)
             {
-                provider.OnUIThread(this.ClearItemsBase);
+                this.platformProvider.OnUIThread(this.ClearItemsBase);
                 return;
             }
 
