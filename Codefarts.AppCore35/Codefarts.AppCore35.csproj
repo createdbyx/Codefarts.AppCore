@@ -39,28 +39,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCore\Code\BindableCollection.cs">
-      <Link>Code\BindableCollection.cs</Link>
+      <Link>BindableCollection.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\DefaultPlatformProvider.cs">
-      <Link>Code\DefaultPlatformProvider.cs</Link>
+      <Link>DefaultPlatformProvider.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\INotifyPropertyChangedEx.cs">
-      <Link>Code\INotifyPropertyChangedEx.cs</Link>
+      <Link>INotifyPropertyChangedEx.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\IObservableCollection.cs">
-      <Link>Code\IObservableCollection.cs</Link>
+      <Link>IObservableCollection.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\IPlatformProvider.cs">
-      <Link>Code\IPlatformProvider.cs</Link>
+      <Link>IPlatformProvider.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\PlatformData.cs">
-      <Link>Code\PlatformData.cs</Link>
+      <Link>PlatformData.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\PlatformProvider.cs">
-      <Link>Code\PlatformProvider.cs</Link>
+      <Link>PlatformProvider.cs</Link>
     </Compile>
     <Compile Include="..\Codefarts.AppCore\Code\PropertyChangedBase.cs">
-      <Link>Code\PropertyChangedBase.cs</Link>
+      <Link>PropertyChangedBase.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,5 +71,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
