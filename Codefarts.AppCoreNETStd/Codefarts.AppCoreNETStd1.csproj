@@ -1,37 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-    <RootNamespace>Codefarts.AppCore</RootNamespace>
-    <AssemblyName>Codefarts.AppCore</AssemblyName>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
-    <Compile Include="..\Codefarts.AppCore35\DefaultPlatformProvider.cs" Link="DefaultPlatformProvider.cs" />
-    <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs" Link="ExtensionMethods.cs" />
-    <Compile Include="..\Codefarts.AppCore35\Interfaces\IBindableCollection.cs" Link="Interfaces\IBindableCollection.cs" />
-    <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs" Link="Interfaces\ILocalizationProvider.cs" />
-    <Compile Include="..\Codefarts.AppCore35\Interfaces\INotifyPropertyChangedEx.cs" Link="Interfaces\INotifyPropertyChangedEx.cs" />
-    <Compile Include="..\Codefarts.AppCore35\Interfaces\IPlatformProvider.cs" Link="Interfaces\IPlatformProvider.cs" />
-    <Compile Include="..\Codefarts.AppCore35\Interfaces\ISettingsProvider.cs" Link="Interfaces\ISettingsProvider.cs" />
-    <Compile Include="..\Codefarts.AppCore35\PlatformData.cs" Link="PlatformData.cs" />
-    <Compile Include="..\Codefarts.AppCore35\PropertyChangedBase.cs" Link="PropertyChangedBase.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
 </Project>

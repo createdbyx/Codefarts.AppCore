@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCoreTests", "AppCoreTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codefarts.AppCore_NETCore1", "Codefarts.AppCore_NETCore\Codefarts.AppCore_NETCore1.csproj", "{2CE87FB6-DD02-49AC-A878-E0E9C04E8400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreNETStd1", "Codefarts.AppCoreNETStd\Codefarts.AppCoreNETStd1.csproj", "{CB414160-74AE-466E-8C52-C3B7BBC8C789}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreNETStd2", "Codefarts.AppCoreNETStd\Codefarts.AppCoreNETStd2.csproj", "{CB414160-74AE-466E-8C52-C3B7BBC8C789}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
