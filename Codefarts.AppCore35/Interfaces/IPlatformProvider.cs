@@ -1,11 +1,6 @@
 ﻿namespace Codefarts.AppCore.Interfaces
 {
     using System;
-#if NET40 || PORTABLE
-#endif
-#if UNITY_5
-    using Task = Codefarts.UnityThreading.Task;
-#endif
 
     /// <summary>
     /// Interface for platform specific operations that need enlightenment.
