@@ -5,14 +5,6 @@
     using System.Windows;
     using Codefarts.AppCore.Interfaces;
 
-#if NET40 || PORTABLE
-    using System.Threading.Tasks;
-#else
-#endif
-#if UNITY_5
-    using Task = Codefarts.UnityThreading.Task;
-#endif
-
     /// <summary>
     /// Default implementation of <see cref="IPlatformProvider"/> for Wpf 3.5 and 4.5.
     /// </summary>
