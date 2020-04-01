@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
-    <Compile Include="..\Codefarts.AppCore35\DefaultPlatformProvider.cs" Link="DefaultPlatformProvider.cs" />
     <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs" Link="ExtensionMethods.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\IBindableCollection.cs" Link="Interfaces\IBindableCollection.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs" Link="Interfaces\ILocalizationProvider.cs" />

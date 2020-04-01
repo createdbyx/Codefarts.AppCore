@@ -166,54 +166,6 @@
             </summary>
             <param name="e">The event data to report in the event.</param>
         </member>
-        <member name="T:Codefarts.AppCore.DefaultPlatformProvider">
-            <summary>
-            Default implementation for <see cref="T:Codefarts.AppCore.Interfaces.IPlatformProvider"/> that does no platform enlightenment.
-            </summary>
-        </member>
-        <member name="P:Codefarts.AppCore.DefaultPlatformProvider.InDesignMode">
-            <summary>
-            Gets a value indicating whether or not the framework is in design-time mode.
-            </summary>
-        </member>
-        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThreadAsync(System.Action)">
-            <summary>
-            Executes the action asynchronously.
-            </summary>
-            <param name="action">The action to execute.</param>
-            <remarks>On .NET 4.0, 4.5 and Portable will Start a new Task via Task.Factory.StartNew.
-            Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
-        </member>
-        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThread(System.Action)">
-            <summary>
-            Executes the action immediately.
-            </summary>
-            <param name="action">The action to execute.</param>
-        </member>
-        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.GetPlatformData">
-            <summary>
-            Gets the platform data.
-            </summary>
-            <returns>
-            Return a new <see cref="T:Codefarts.AppCore.PlatformData"/> object containing information about the current platform and environment that the code is running under.
-            </returns>
-        </member>
-        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThreadAsync(System.Action{System.Object[]},System.Object[])">
-            <summary>
-            Executes the action asynchronously.
-            </summary>
-            <param name="action">The action to execute.</param>
-            <param name="args">Provides an list of arguments that will be passed to the action.</param>
-            <remarks>On .NET 4.0, 4.5 and Portable will Start a new Task via Task.Factory.StartNew.
-            Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
-        </member>
-        <member name="M:Codefarts.AppCore.DefaultPlatformProvider.OnUIThread(System.Action{System.Object[]},System.Object[])">
-            <summary>
-            Executes the action immediately.
-            </summary>
-            <param name="action">The action to execute.</param>
-            <param name="args">Provides an list of arguments that will be passed to the action.</param>
-        </member>
         <member name="T:Codefarts.AppCore.Interfaces.IBindableCollection`1">
             <summary>
             Represents a collection that is observable.

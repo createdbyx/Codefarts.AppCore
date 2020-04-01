@@ -1,16 +1,9 @@
-﻿namespace Codefarts.AppCore
+﻿namespace AppCoreTests
 {
     using System;
-    using Codefarts.AppCore.Interfaces;
-
-#if NET40 || PORTABLE || NET45
-    using System.Threading.Tasks;
-#else
     using System.Threading;
-#endif
-#if UNITY_5
-    using Task = Codefarts.UnityThreading.Task;
-#endif
+    using Codefarts.AppCore;
+    using Codefarts.AppCore.Interfaces;
 
     /// <summary>
     /// Default implementation for <see cref="IPlatformProvider"/> that does no platform enlightenment.
@@ -33,11 +26,7 @@
         /// Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
         public void OnUIThreadAsync(Action action)
         {
-#if NET40 || PORTABLE || NET45
-            Task.Factory.StartNew(action);
-#else
             ThreadPool.QueueUserWorkItem(x => action());
-#endif
         }
 
         /// <summary>
@@ -69,11 +58,7 @@
         /// Otherwise queues it up on the thread pool via ThreadPool.QueueUserWorkItem.</remarks>
         public void OnUIThreadAsync(Action<object[]> action, params object[] args)
         {
-#if NET40 || PORTABLE || NET45
-            Task.Factory.StartNew(() => action(args));
-#else
             ThreadPool.QueueUserWorkItem(x => action(args));
-#endif
         }
 
         /// <summary>
