@@ -1,13 +1,16 @@
-﻿namespace Codefarts.AppCore.Interfaces
+﻿// <copyright file="ISettingsProvider.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
+
+namespace Codefarts.AppCore.Interfaces
 {
-    using System;
+    using Codefarts.AppCore.EventHandlers;
 
     /// <summary>
     /// Provides an interface for storing and retrieving settings.
     /// </summary>
     public interface ISettingsProvider
     {
-
         /// <summary>
         /// Occurs when a setting is changed.
         /// </summary>
@@ -40,48 +43,5 @@
         void SetSetting<T>(string key, T value);
 
         void Draw();
-    }
-
-    /// <summary>
-    /// Provides a delegate for the <see cref="ISettingsProvider.SettingChanged"/> event.
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="args">The arguments containing information about what setting changed.</param>
-    public delegate void SettingChangedEventHandler(object sender, SettingChangedEventHandlerArgs args);
-
-    /// <summary>
-    /// Provides an argument class for the <seealso cref="ISettingsProvider.SettingChanged"/> event.
-    /// </summary>
-    /// <seealso cref="System.EventArgs" />
-    public class SettingChangedEventHandlerArgs : EventArgs
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SettingChangedEventHandlerArgs"/> class.
-        /// </summary>
-        /// <param name="key">The setting key.</param>
-        /// <param name="value">The value that changed.</param>
-        public SettingChangedEventHandlerArgs(string key, object value)
-        {
-            this.Key = key;
-            this.Value = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the setting key.
-        /// </summary>
-        public string Key
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Gets the value that changed.
-        /// </summary>
-        public object Value
-        {
-            get;
-            private set;
-        }
     }
 }

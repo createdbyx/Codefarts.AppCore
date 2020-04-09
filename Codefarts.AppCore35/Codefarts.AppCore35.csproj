@@ -39,6 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindableCollection.cs" />
+    <Compile Include="EventHandlers.cs" />
+    <Compile Include="EventArgs\SettingChangedEventHandlerArgs.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Interfaces\ILocalizationProvider.cs" />
     <Compile Include="Interfaces\INotifyPropertyChangedEx.cs" />
@@ -58,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
+    <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

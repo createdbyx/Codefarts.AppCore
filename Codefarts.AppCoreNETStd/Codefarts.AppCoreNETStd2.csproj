@@ -4,10 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Codefarts.AppCore</RootNamespace>
     <AssemblyName>Codefarts.AppCore</AssemblyName>
+    <AssemblyVersion>2020.4.9.31</AssemblyVersion>
+    <FileVersion>2020.4.9.31</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\EventArgs\SettingChangedEventHandlerArgs.cs" Link="EventArgs\SettingChangedEventHandlerArgs.cs" />
+    <Compile Include="..\Codefarts.AppCore35\EventHandlers.cs" Link="EventHandlers.cs" />
     <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs" Link="ExtensionMethods.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\IBindableCollection.cs" Link="Interfaces\IBindableCollection.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs" Link="Interfaces\ILocalizationProvider.cs" />
@@ -16,6 +20,10 @@
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ISettingsProvider.cs" Link="Interfaces\ISettingsProvider.cs" />
     <Compile Include="..\Codefarts.AppCore35\PlatformData.cs" Link="PlatformData.cs" />
     <Compile Include="..\Codefarts.AppCore35\PropertyChangedBase.cs" Link="PropertyChangedBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\Codefarts.AppCore35\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +39,11 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
+    <Folder Include="EventArgs\" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -noprofile -nologo -noninteractive -Command .'P:\PowerShell\post-build.ps1' -OutDir:'$(OutDir)' -ConfigurationName:'$(ConfigurationName)' -ProjectName:'$(ProjectName)' -TargetName:'$(TargetName)' -TargetPath:'$(TargetPath)' -ProjectPath:'$(ProjectPath)' -ProjectFileName:'$(ProjectFileName)'	-TargetExt:'$(TargetExt)' -TargetFileName:'$(TargetFileName)' -DevEnvDir:'$(DevEnvDir)' -TargetDir:'$(TargetDir)' -ProjectDir:'$(ProjectDir)' -SolutionFileName:'$(SolutionFileName)' -SolutionPath:'$(SolutionPath)' -SolutionDir:'$(SolutionDir)' -SolutionName:'$(SolutionName)' -PlatformName:'$(PlatformName)' -ProjectExt:'$(ProjectExt)' -SolutionExt:'$(SolutionExt)'" />
+  </Target>
 
 </Project>

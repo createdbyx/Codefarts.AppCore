@@ -1,13 +1,8 @@
-﻿/*
-<copyright>
-  Copyright (c) 2012 Codefarts
-  All rights reserved.
-  contact@codefarts.com
-  http://www.codefarts.com
-</copyright>
-*/
+﻿// <copyright file="ExtensionMethods.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
 
-namespace Codefarts.CoreProjectCode
+namespace Codefarts.AppCore
 {
     using System;
     using Codefarts.AppCore.Interfaces;

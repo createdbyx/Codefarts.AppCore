@@ -166,6 +166,51 @@
             </summary>
             <param name="e">The event data to report in the event.</param>
         </member>
+        <member name="T:Codefarts.AppCore.EventArgs.SettingChangedEventHandlerArgs">
+            <summary>
+            Provides an argument class for the <seealso cref="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged"/> event.
+            </summary>
+            <seealso cref="T:System.EventArgs" />
+        </member>
+        <member name="M:Codefarts.AppCore.EventArgs.SettingChangedEventHandlerArgs.#ctor(System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codefarts.AppCore.EventArgs.SettingChangedEventHandlerArgs"/> class.
+            </summary>
+            <param name="key">The setting key.</param>
+            <param name="value">The value that changed.</param>
+        </member>
+        <member name="P:Codefarts.AppCore.EventArgs.SettingChangedEventHandlerArgs.Key">
+            <summary>
+            Gets or sets the setting key.
+            </summary>
+        </member>
+        <member name="P:Codefarts.AppCore.EventArgs.SettingChangedEventHandlerArgs.Value">
+            <summary>
+            Gets or sets the value that changed.
+            </summary>
+        </member>
+        <member name="T:Codefarts.AppCore.EventHandlers.SettingChangedEventHandler">
+            <summary>
+            Provides a delegate for the <see cref="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged"/> event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The arguments containing information about what setting changed.</param>
+        </member>
+        <member name="T:Codefarts.AppCore.ExtensionMethods">
+            <summary>
+            provides extension methods for the <see cref="T:Codefarts.AppCore.Interfaces.ISettingsProvider"/> type.
+            </summary>
+        </member>
+        <member name="M:Codefarts.AppCore.ExtensionMethods.GetString(Codefarts.AppCore.Interfaces.ILocalizationProvider,System.String,System.String)">
+            <summary>Gets the localized string.</summary>
+            <summary>
+            Gets a localized string.
+            </summary>
+            <param name="provider">The localization provider reference.</param>
+            <param name="name">The name of the localized string.</param>
+            <param name="defaultValue">The default value to return if unable to retrieve the localized string.</param>
+            <returns>The value of the localized string.</returns>
+        </member>
         <member name="T:Codefarts.AppCore.Interfaces.IBindableCollection`1">
             <summary>
             Represents a collection that is observable.
@@ -318,36 +363,6 @@
             <param name="key">The name of the setting.</param>
             <param name="value">The setting value to store.</param>
         </member>
-        <member name="T:Codefarts.AppCore.Interfaces.SettingChangedEventHandler">
-            <summary>
-            Provides a delegate for the <see cref="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged"/> event.
-            </summary>
-            <param name="sender">The sender.</param>
-            <param name="args">The arguments containing information about what setting changed.</param>
-        </member>
-        <member name="T:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs">
-            <summary>
-            Provides an argument class for the <seealso cref="E:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingChanged"/> event.
-            </summary>
-            <seealso cref="T:System.EventArgs" />
-        </member>
-        <member name="M:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs.#ctor(System.String,System.Object)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs"/> class.
-            </summary>
-            <param name="key">The setting key.</param>
-            <param name="value">The value that changed.</param>
-        </member>
-        <member name="P:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs.Key">
-            <summary>
-            Gets or sets the setting key.
-            </summary>
-        </member>
-        <member name="P:Codefarts.AppCore.Interfaces.SettingChangedEventHandlerArgs.Value">
-            <summary>
-            Gets the value that changed.
-            </summary>
-        </member>
         <member name="T:Codefarts.AppCore.PlatformData">
             <summary>
             Contains properties that provide platform and environment data.
@@ -431,21 +446,6 @@
             </summary>
             <param name="expression">The expression to get the member info from.</param>
             <returns>A reference to a <see cref="T:System.Reflection.MemberInfo"/> object.</returns>
-        </member>
-        <member name="T:Codefarts.CoreProjectCode.ExtensionMethods">
-            <summary>
-            provides extension methods for the <see cref="T:Codefarts.AppCore.Interfaces.ISettingsProvider"/> type.
-            </summary>
-        </member>
-        <member name="M:Codefarts.CoreProjectCode.ExtensionMethods.GetString(Codefarts.AppCore.Interfaces.ILocalizationProvider,System.String,System.String)">
-            <summary>Gets the localized string.</summary>
-            <summary>
-            Gets a localized string.
-            </summary>
-            <param name="provider">The localization provider reference.</param>
-            <param name="name">The name of the localized string.</param>
-            <param name="defaultValue">The default value to return if unable to retrieve the localized string.</param>
-            <returns>The value of the localized string.</returns>
         </member>
     </members>
 </doc>

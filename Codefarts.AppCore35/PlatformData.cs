@@ -1,4 +1,8 @@
-﻿namespace Codefarts.AppCore
+﻿// <copyright file="PlatformData.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
+
+namespace Codefarts.AppCore
 {
     /// <summary>
     /// Contains properties that provide platform and environment data.

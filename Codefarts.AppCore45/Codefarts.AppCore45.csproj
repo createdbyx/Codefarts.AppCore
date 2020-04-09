@@ -51,6 +51,12 @@
     <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs">
       <Link>BindableCollection.cs</Link>
     </Compile>
+    <Compile Include="..\Codefarts.AppCore35\EventArgs\SettingChangedEventHandlerArgs.cs">
+      <Link>EventArgs\SettingChangedEventHandlerArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\EventHandlers.cs">
+      <Link>EventHandlers.cs</Link>
+    </Compile>
     <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs">
       <Link>ExtensionMethods.cs</Link>
     </Compile>

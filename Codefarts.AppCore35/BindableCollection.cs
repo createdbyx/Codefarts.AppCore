@@ -1,4 +1,8 @@
-﻿namespace Codefarts.AppCore
+﻿// <copyright file="BindableCollection.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
+
+namespace Codefarts.AppCore
 {
     using System;
     using System.Collections.Generic;

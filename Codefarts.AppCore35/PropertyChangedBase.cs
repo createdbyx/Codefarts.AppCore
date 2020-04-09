@@ -1,4 +1,8 @@
-﻿namespace Codefarts.AppCore
+﻿// <copyright file="PropertyChangedBase.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
+
+namespace Codefarts.AppCore
 {
     using System;
     using System.ComponentModel;

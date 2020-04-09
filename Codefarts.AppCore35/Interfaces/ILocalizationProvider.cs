@@ -1,4 +1,8 @@
-﻿namespace Codefarts.AppCore.Interfaces
+﻿// <copyright file="ILocalizationProvider.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
+
+namespace Codefarts.AppCore.Interfaces
 {
     using System.Collections.Generic;
     using System.Globalization;

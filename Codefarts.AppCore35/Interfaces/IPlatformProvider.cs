@@ -1,4 +1,8 @@
-﻿namespace Codefarts.AppCore.Interfaces
+﻿// <copyright file="IPlatformProvider.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// </copyright>
+
+namespace Codefarts.AppCore.Interfaces
 {
     using System;
 

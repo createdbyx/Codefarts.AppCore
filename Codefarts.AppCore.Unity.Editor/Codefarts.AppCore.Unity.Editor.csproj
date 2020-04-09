@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyVersion>2020.4.9.0</AssemblyVersion>
+    <FileVersion>2020.4.9.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;UNITY_2019</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Codefarts.Unity\Localization\en-us.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Codefarts.Unity\Localization\en-us.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Codefarts.AppCore\Codefarts.AppCoreNETStd\Codefarts.AppCoreNETStd2.csproj" />
+    <ProjectReference Include="..\..\Codefarts.IoC\Codefarts.IoCStandard20\Codefarts.IoCStandard20.csproj" />
+    <ProjectReference Include="..\Codefarts.AppCore.Unity\Codefarts.AppCore.Unity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.19f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.4.19f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -noprofile -nologo -noninteractive -Command .'P:\PowerShell\post-build.ps1' -OutDir:'$(OutDir)' -ConfigurationName:'$(ConfigurationName)' -ProjectName:'$(ProjectName)' -TargetName:'$(TargetName)' -TargetPath:'$(TargetPath)' -ProjectPath:'$(ProjectPath)' -ProjectFileName:'$(ProjectFileName)'	-TargetExt:'$(TargetExt)' -TargetFileName:'$(TargetFileName)' -DevEnvDir:'$(DevEnvDir)' -TargetDir:'$(TargetDir)' -ProjectDir:'$(ProjectDir)' -SolutionFileName:'$(SolutionFileName)' -SolutionPath:'$(SolutionPath)' -SolutionDir:'$(SolutionDir)' -SolutionName:'$(SolutionName)' -PlatformName:'$(PlatformName)' -ProjectExt:'$(ProjectExt)' -SolutionExt:'$(SolutionExt)'" />
+  </Target>
+
+</Project>
