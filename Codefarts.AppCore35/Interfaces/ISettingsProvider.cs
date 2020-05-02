@@ -4,6 +4,7 @@
 
 namespace Codefarts.AppCore.Interfaces
 {
+    using System.Collections.ObjectModel;
     using Codefarts.AppCore.EventHandlers;
 
     /// <summary>
@@ -41,6 +42,14 @@ namespace Codefarts.AppCore.Interfaces
         /// <param name="key">The name of the setting.</param>
         /// <param name="value">The setting value to store.</param>
         void SetSetting<T>(string key, T value);
+
+        /// <summary>
+        /// Gets the setting keys.
+        /// </summary>
+        ReadOnlyCollection<string> SettingKeys
+        {
+            get;
+        }
 
         void Draw();
     }

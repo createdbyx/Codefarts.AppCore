@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2020.4.9.0</AssemblyVersion>
-    <FileVersion>2020.4.9.0</FileVersion>
+    <AssemblyVersion>2020.4.16.7</AssemblyVersion>
+    <FileVersion>2020.4.16.7</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -noprofile -nologo -noninteractive -Command .'P:\PowerShell\post-build.ps1' -OutDir:'$(OutDir)' -ConfigurationName:'$(ConfigurationName)' -ProjectName:'$(ProjectName)' -TargetName:'$(TargetName)' -TargetPath:'$(TargetPath)' -ProjectPath:'$(ProjectPath)' -ProjectFileName:'$(ProjectFileName)'	-TargetExt:'$(TargetExt)' -TargetFileName:'$(TargetFileName)' -DevEnvDir:'$(DevEnvDir)' -TargetDir:'$(TargetDir)' -ProjectDir:'$(ProjectDir)' -SolutionFileName:'$(SolutionFileName)' -SolutionPath:'$(SolutionPath)' -SolutionDir:'$(SolutionDir)' -SolutionName:'$(SolutionName)' -PlatformName:'$(PlatformName)' -ProjectExt:'$(ProjectExt)' -SolutionExt:'$(SolutionExt)'" />
+    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -noprofile -nologo -noninteractive -Command .'P:\PowerShell\post-build.ps1' -vs_OutDir:'$(OutDir)' -vs_ConfigurationName:'$(ConfigurationName)' -vs_ProjectName:'$(ProjectName)' -vs_TargetName:'$(TargetName)' -vs_TargetPath:'$(TargetPath)' -vs_ProjectPath:'$(ProjectPath)' -vs_ProjectFileName:'$(ProjectFileName)'	-vs_TargetExt:'$(TargetExt)' -vs_TargetFileName:'$(TargetFileName)' -vs_DevEnvDir:'$(DevEnvDir)' -vs_TargetDir:'$(TargetDir)' -vs_ProjectDir:'$(ProjectDir)' -vs_SolutionFileName:'$(SolutionFileName)' -vs_SolutionPath:'$(SolutionPath)' -vs_SolutionDir:'$(SolutionDir)' -vs_SolutionName:'$(SolutionName)' -vs_PlatformName:'$(PlatformName)' -vs_ProjectExt:'$(ProjectExt)' -vs_SolutionExt:'$(SolutionExt)'" />
   </Target>
 
 </Project>

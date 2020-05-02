@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Codefarts.AppCoreWpf45")]
+[assembly: AssemblyTitle("Codefarts.AppCoreWpf46")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Codefarts")]
-[assembly: AssemblyProduct("Codefarts.AppCoreWpf45")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Codefarts.AppCoreWpf46")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("230d21b4-b4b2-4d1f-99d7-140f5a275996")]
+[assembly: Guid("c030bcd5-3c53-40df-9783-8718145beea3")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2020.4.21.0")]
-[assembly: AssemblyFileVersion("2020.4.21.0")]
+[assembly: AssemblyVersion("2020.4.25.1")]
+[assembly: AssemblyFileVersion("2020.4.25.1")]

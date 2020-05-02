@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codefarts.AppCore.Unity", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codefarts.AppCore.Unity.Editor", "Codefarts.AppCore.Unity.Editor\Codefarts.AppCore.Unity.Editor.csproj", "{38116A29-5948-4774-A6BE-CA801EAAE50E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf46", "Codefarts.AppCoreWpf46\Codefarts.AppCoreWpf46.csproj", "{C030BCD5-3C53-40DF-9783-8718145BEEA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{38116A29-5948-4774-A6BE-CA801EAAE50E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38116A29-5948-4774-A6BE-CA801EAAE50E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38116A29-5948-4774-A6BE-CA801EAAE50E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C030BCD5-3C53-40DF-9783-8718145BEEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C030BCD5-3C53-40DF-9783-8718145BEEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C030BCD5-3C53-40DF-9783-8718145BEEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C030BCD5-3C53-40DF-9783-8718145BEEA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
