@@ -4,12 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Codefarts.AppCore</RootNamespace>
     <AssemblyName>Codefarts.AppCore</AssemblyName>
-    <AssemblyVersion>2020.4.27.2</AssemblyVersion>
-    <FileVersion>2020.4.27.2</FileVersion>
+    <AssemblyVersion>2020.9.20.1</AssemblyVersion>
+    <FileVersion>2020.9.20.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\EventArgs\PropertyChangedEventArgs.cs" Link="EventArgs\PropertyChangedEventArgs.cs" />
     <Compile Include="..\Codefarts.AppCore35\EventArgs\SettingChangedEventHandlerArgs.cs" Link="EventArgs\SettingChangedEventHandlerArgs.cs" />
     <Compile Include="..\Codefarts.AppCore35\EventHandlers.cs" Link="EventHandlers.cs" />
     <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs" Link="ExtensionMethods.cs" />
@@ -38,7 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="EventArgs\" />
   </ItemGroup>
 

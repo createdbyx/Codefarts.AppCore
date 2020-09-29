@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel;
+    using System.Reflection;
     using System.Windows;
     using Codefarts.AppCore.Interfaces;
 
@@ -93,7 +94,8 @@
             return new PlatformData(
                 Environment.OSVersion.VersionString,
                 Environment.ProcessorCount,
-                Environment.CommandLine);
+                Environment.GetCommandLineArgs(),
+                System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
         }
     }
 }

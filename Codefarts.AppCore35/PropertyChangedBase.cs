@@ -2,6 +2,8 @@
 // Copyright (c) Codefarts
 // </copyright>
 
+using System.Runtime.CompilerServices;
+
 namespace Codefarts.AppCore
 {
     using System;
@@ -42,6 +44,7 @@ namespace Codefarts.AppCore
         /// Property name will be <see cref="string.Empty"/>.</remarks>
         public virtual void Refresh()
         {
+            // this.PropertyChanged.Notify(string.Empty);
             this.NotifyOfPropertyChange(string.Empty);
         }
 
@@ -49,7 +52,7 @@ namespace Codefarts.AppCore
         /// Notifies subscribers of the property change.
         /// </summary>
         /// <param name="propertyName">Name of the property that changed.</param>
-        public virtual void NotifyOfPropertyChange(string propertyName)
+        public virtual void NotifyOfPropertyChange(string propertyName = null)
         {
             var handler = this.PropertyChanged;
             if (this.IsNotifying && handler != null)
@@ -58,15 +61,17 @@ namespace Codefarts.AppCore
             }
         }
 
-        /// <summary>
-        /// Notifies subscribers of the property change.
-        /// </summary>
-        /// <typeparam name="TProperty">The type of the property.</typeparam>
-        /// <param name="property">The property expression.</param>
-        public void NotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> property)
-        {
-            this.NotifyOfPropertyChange(this.GetMemberInfo(property).Name);
-        }
+        ///// <summary>
+        ///// Notifies subscribers of the property change.
+        ///// </summary>
+        ///// <typeparam name="TProperty">The type of the property.</typeparam>
+        ///// <param name="property">The property expression.</param>
+        //public void NotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> property)
+        //{
+        //    this.PropertyChanged.Notify(this, property);
+        //   // this.PropertyChanged.Notify(this, this.GetMemberInfo(property).Name);
+        //    //  this.NotifyOfPropertyChange(this.GetMemberInfo(property).Name);
+        //}
 
         /// <summary>
         /// Raises the <see cref="PropertyChanged" /> event directly.
@@ -82,27 +87,27 @@ namespace Codefarts.AppCore
             }
         }
 
-        /// <summary>
-        /// Gets the member information for a given expression.
-        /// </summary>
-        /// <param name="expression">The expression to get the member info from.</param>
-        /// <returns>A reference to a <see cref="MemberInfo"/> object.</returns>
-        private MemberInfo GetMemberInfo(Expression expression)
-        {
-            var lambda = (LambdaExpression)expression;
+        ///// <summary>
+        ///// Gets the member information for a given expression.
+        ///// </summary>
+        ///// <param name="expression">The expression to get the member info from.</param>
+        ///// <returns>A reference to a <see cref="MemberInfo"/> object.</returns>
+        //private MemberInfo GetMemberInfo(Expression expression)
+        //{
+        //    var lambda = (LambdaExpression)expression;
 
-            MemberExpression memberExpression;
-            var unaryExpression = lambda.Body as UnaryExpression;
-            if (unaryExpression != null)
-            {
-                memberExpression = (MemberExpression)unaryExpression.Operand;
-            }
-            else
-            {
-                memberExpression = (MemberExpression)lambda.Body;
-            }
+        //    MemberExpression memberExpression;
+        //    var unaryExpression = lambda.Body as UnaryExpression;
+        //    if (unaryExpression != null)
+        //    {
+        //        memberExpression = (MemberExpression)unaryExpression.Operand;
+        //    }
+        //    else
+        //    {
+        //        memberExpression = (MemberExpression)lambda.Body;
+        //    }
 
-            return memberExpression.Member;
-        }
+        //    return memberExpression.Member;
+        //}
     }
 }

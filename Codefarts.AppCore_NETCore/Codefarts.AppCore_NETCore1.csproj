@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\EventArgs\PropertyChangedEventArgs.cs" Link="EventArgs\PropertyChangedEventArgs.cs" />
     <Compile Include="..\Codefarts.AppCore35\EventArgs\SettingChangedEventHandlerArgs.cs" Link="EventArgs\SettingChangedEventHandlerArgs.cs" />
     <Compile Include="..\Codefarts.AppCore35\EventHandlers.cs" Link="EventHandlers.cs" />
     <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs" Link="ExtensionMethods.cs" />

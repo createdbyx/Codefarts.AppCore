@@ -15,7 +15,10 @@
         /// </summary>
         public bool InDesignMode
         {
-            get { return true; }
+            get
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -46,7 +49,7 @@
         /// </returns>
         public PlatformData GetPlatformData()
         {
-            return new PlatformData(null, 0, null);
+            return new PlatformData(null, 0, null, null);
         }
 
         /// <summary>

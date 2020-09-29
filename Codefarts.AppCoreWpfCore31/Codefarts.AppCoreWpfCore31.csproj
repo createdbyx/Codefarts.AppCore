@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <RootNamespace>Codefarts.AppCore</RootNamespace>
-    <AssemblyVersion>2020.4.27.2</AssemblyVersion>
-    <FileVersion>2020.4.27.2</FileVersion>
+    <AssemblyVersion>2020.9.15.1</AssemblyVersion>
+    <FileVersion>2020.9.15.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +14,17 @@
 
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCoreWpf35\WpfPlatformProvider.cs" Link="WpfPlatformProvider.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

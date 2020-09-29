@@ -199,7 +199,7 @@ namespace Codefarts.AppCore.Unity.Editor
         /// <param name="e">An System.EventArgs that contains no event data.</param>
         private void UploadProgressChanged(object sender, UploadProgressChangedEventArgs e)
         {
-            var local = Container.Default.Resolve<ILocalizationProvider>(null);
+            var local = Container.Default.Resolve<ILocalizationProvider>();
             this.statusMessage = string.Format(local.GetString("PercentageComplete", "{0} complete."), e.ProgressPercentage);
         }
 

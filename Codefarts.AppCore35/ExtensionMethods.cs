@@ -4,7 +4,6 @@
 
 namespace Codefarts.AppCore
 {
-    using System;
     using Codefarts.AppCore.Interfaces;
 
     /// <summary>
@@ -24,6 +23,12 @@ namespace Codefarts.AppCore
         {
             try
             {
+                if (provider == null)
+                {
+                    return defaultValue;
+
+                }
+
                 return provider.GetString(name);
             }
             catch
@@ -31,5 +36,41 @@ namespace Codefarts.AppCore
                 return defaultValue;
             }
         }
+
+        ///// <summary>Gets the argument from a <see cref="IConstructorArguments" /> implementation.</summary>
+        ///// <param name="args">The <see cref="IConstructorArguments"/> implementation.</param>
+        ///// <param name="name">The name of the argument.</param>
+        ///// <param name="defaultValue">The default value to return if unable to retrieve the argument.</param>
+        ///// <returns>The value of the argument.</returns>
+        //public static T GetArgument<T>(this IConstructorArguments args, string name, T defaultValue)
+        //{
+        //    try
+        //    {
+        //        var actualKey = args.Arguments.Keys.FirstOrDefault(x => x.Equals(name, StringComparison.OrdinalIgnoreCase));
+        //        return (T)args.Arguments[actualKey];
+        //    }
+        //    catch
+        //    {
+        //        return defaultValue;
+        //    }
+        //}
+
+        //private static MemberInfo GetMemberInfo(Expression expression)
+        //{
+        //    var lambda = (LambdaExpression)expression;
+
+        //    MemberExpression memberExpression;
+        //    var unaryExpression = lambda.Body as UnaryExpression;
+        //    if (unaryExpression != null)
+        //    {
+        //        memberExpression = (MemberExpression)unaryExpression.Operand;
+        //    }
+        //    else
+        //    {
+        //        memberExpression = (MemberExpression)lambda.Body;
+        //    }
+
+        //    return memberExpression.Member;
+        //}
     }
 }

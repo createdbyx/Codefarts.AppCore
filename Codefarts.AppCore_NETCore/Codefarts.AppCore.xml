@@ -363,18 +363,23 @@
             <param name="key">The name of the setting.</param>
             <param name="value">The setting value to store.</param>
         </member>
+        <member name="P:Codefarts.AppCore.Interfaces.ISettingsProvider.SettingKeys">
+            <summary>
+            Gets the setting keys.
+            </summary>
+        </member>
         <member name="T:Codefarts.AppCore.PlatformData">
             <summary>
             Contains properties that provide platform and environment data.
             </summary>
         </member>
-        <member name="M:Codefarts.AppCore.PlatformData.#ctor(System.String,System.Int32,System.String)">
+        <member name="M:Codefarts.AppCore.PlatformData.#ctor(System.String,System.Int32,System.Collections.Generic.IEnumerable{System.String},System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Codefarts.AppCore.PlatformData"/> class.
             </summary>
             <param name="operatingSystem">The operating system name.</param>
             <param name="processorCount">The processor count.</param>
-            <param name="commandLine">The command line (if any) that was used to start the process.</param>
+            <param name="commandLineArguments">The command line (if any) that was used to start the process.</param>
         </member>
         <member name="P:Codefarts.AppCore.PlatformData.OperatingSystem">
             <summary>
@@ -389,7 +394,7 @@
             Gets the number of processors on the platform.
             </summary>
         </member>
-        <member name="P:Codefarts.AppCore.PlatformData.CommandLine">
+        <member name="P:Codefarts.AppCore.PlatformData.CommandLineArguments">
             <summary>
             Gets the command line (if any) that was used to start the process.
             </summary>
@@ -427,25 +432,11 @@
             </summary>
             <param name="propertyName">Name of the property that changed.</param>
         </member>
-        <member name="M:Codefarts.AppCore.PropertyChangedBase.NotifyOfPropertyChange``1(System.Linq.Expressions.Expression{System.Func{``0}})">
-            <summary>
-            Notifies subscribers of the property change.
-            </summary>
-            <typeparam name="TProperty">The type of the property.</typeparam>
-            <param name="property">The property expression.</param>
-        </member>
         <member name="M:Codefarts.AppCore.PropertyChangedBase.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
             <summary>
             Raises the <see cref="E:Codefarts.AppCore.PropertyChangedBase.PropertyChanged" /> event directly.
             </summary>
             <param name="e">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="M:Codefarts.AppCore.PropertyChangedBase.GetMemberInfo(System.Linq.Expressions.Expression)">
-            <summary>
-            Gets the member information for a given expression.
-            </summary>
-            <param name="expression">The expression to get the member info from.</param>
-            <returns>A reference to a <see cref="T:System.Reflection.MemberInfo"/> object.</returns>
         </member>
     </members>
 </doc>

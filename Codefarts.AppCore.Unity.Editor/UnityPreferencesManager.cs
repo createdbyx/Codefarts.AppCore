@@ -160,7 +160,7 @@ namespace Codefarts.AppCore.Unity.Editor
             // get reference to localization manager
             var local = Container.Default.Resolve<ILocalizationProvider>();
 
-            var settings = Container.Default.Resolve<ISettingsProvider>(null);
+            var settings = Container.Default.Resolve<ISettingsProvider>();
             if (settings != null)
             {
                 using (new GUILayout.VerticalScope())
