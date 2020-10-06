@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unity", "Unity", "{62BE3600
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf47", "Codefarts.AppCoreWpf47\Codefarts.AppCoreWpf47.csproj", "{25EF0432-9E23-4A49-9C2A-16DD7C53C216}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalizationProviders", "LocalizationProviders", "{E8B2AC86-CE45-41D9-B0C1-E2DF1BB17954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore.LocalizationProviders.TextFileCore31", "Localization Providers\Codefarts.AppCore.LocalizationProviders.TextFileCore31\Codefarts.AppCore.LocalizationProviders.TextFileCore31.csproj", "{A579CCE9-59D6-4F74-BF87-7CB4269B7928}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +103,10 @@ Global
 		{25EF0432-9E23-4A49-9C2A-16DD7C53C216}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25EF0432-9E23-4A49-9C2A-16DD7C53C216}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25EF0432-9E23-4A49-9C2A-16DD7C53C216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +120,7 @@ Global
 		{756E05EE-B579-4D8F-90C6-A05292412A56} = {D4EF779C-A631-44A3-A9F2-6E88BD13F9CF}
 		{C215967B-CE19-4258-BDBC-E320A21A1A53} = {D4EF779C-A631-44A3-A9F2-6E88BD13F9CF}
 		{25EF0432-9E23-4A49-9C2A-16DD7C53C216} = {2F3DF174-2596-4E60-A644-2F466DDB8E7B}
+		{A579CCE9-59D6-4F74-BF87-7CB4269B7928} = {E8B2AC86-CE45-41D9-B0C1-E2DF1BB17954}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {699E202A-B6F5-432E-B9E2-D77C2CA1278B}
