@@ -20,14 +20,6 @@ namespace Codefarts.AppCore.Interfaces
         /// <summary>
         /// Registers a dataset of localized strings from a <see cref="IDictionary{TKey,TValue}"/> reference.
         /// </summary>
-        /// <param name="culture">The <see cref="CultureInfo"/> that the strings will be registered into.</param>
-        /// <param name="entries">A <see cref="IDictionary{TKey,TValue}"/> containing the localized strings to add.</param>
-        /// <remarks>This method will override any existing key values.</remarks>
-        void Register(CultureInfo culture, IDictionary<string, string> entries);
-
-        /// <summary>
-        /// Registers a dataset of localized strings from a <see cref="IDictionary{TKey,TValue}"/> reference.
-        /// </summary>
         /// <param name="culture">
         /// The <see cref="CultureInfo"/> that the strings will be registered into.
         /// </param>
