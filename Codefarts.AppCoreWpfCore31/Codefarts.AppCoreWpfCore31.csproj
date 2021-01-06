@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <RootNamespace>Codefarts.AppCore</RootNamespace>
-    <AssemblyVersion>2020.9.15.1</AssemblyVersion>
-    <FileVersion>2020.9.15.1</FileVersion>
+    <AssemblyVersion>2020.11.11.0</AssemblyVersion>
+    <FileVersion>2020.11.11.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

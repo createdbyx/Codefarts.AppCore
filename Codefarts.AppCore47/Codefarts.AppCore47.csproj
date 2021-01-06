@@ -84,6 +84,9 @@
     <Compile Include="..\Codefarts.AppCore35\PropertyChangedBase.cs">
       <Link>PropertyChangedBase.cs</Link>
     </Compile>
+    <Compile Include="..\Codefarts.AppCore35\SettingException.cs">
+      <Link>SettingException.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

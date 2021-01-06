@@ -51,6 +51,7 @@
     <Compile Include="PlatformData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyChangedBase.cs" />
+    <Compile Include="SettingException.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers">

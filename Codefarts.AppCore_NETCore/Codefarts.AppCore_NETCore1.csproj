@@ -25,6 +25,7 @@
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ISettingsProvider.cs" Link="Interfaces\ISettingsProvider.cs" />
     <Compile Include="..\Codefarts.AppCore35\PlatformData.cs" Link="PlatformData.cs" />
     <Compile Include="..\Codefarts.AppCore35\PropertyChangedBase.cs" Link="PropertyChangedBase.cs" />
+    <Compile Include="..\Codefarts.AppCore35\SettingException.cs" Link="SettingException.cs" />
   </ItemGroup>
 
   <ItemGroup>

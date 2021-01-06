@@ -39,7 +39,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCoreWpf47", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalizationProviders", "LocalizationProviders", "{E8B2AC86-CE45-41D9-B0C1-E2DF1BB17954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore.LocalizationProviders.TextFileCore31", "Localization Providers\Codefarts.AppCore.LocalizationProviders.TextFileCore31\Codefarts.AppCore.LocalizationProviders.TextFileCore31.csproj", "{A579CCE9-59D6-4F74-BF87-7CB4269B7928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codefarts.AppCore.LocalizationProviders.TextFileCore31", "Localization Providers\Codefarts.AppCore.LocalizationProviders.TextFileCore31\Codefarts.AppCore.LocalizationProviders.TextFileCore31.csproj", "{A579CCE9-59D6-4F74-BF87-7CB4269B7928}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codefarts.AppCoreNET5", "Codefarts.AppCoreNET5\Codefarts.AppCoreNET5.csproj", "{353A13C8-4A02-4EC4-B7AD-1452768FBF02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,10 @@ Global
 		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A579CCE9-59D6-4F74-BF87-7CB4269B7928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{353A13C8-4A02-4EC4-B7AD-1452768FBF02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{353A13C8-4A02-4EC4-B7AD-1452768FBF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{353A13C8-4A02-4EC4-B7AD-1452768FBF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{353A13C8-4A02-4EC4-B7AD-1452768FBF02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
