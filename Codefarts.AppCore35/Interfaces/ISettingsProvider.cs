@@ -1,5 +1,7 @@
 ﻿// <copyright file="ISettingsProvider.cs" company="Codefarts">
 // Copyright (c) Codefarts
+// contact@codefarts.com
+// http://www.codefarts.com
 // </copyright>
 
 namespace Codefarts.AppCore.Interfaces
@@ -17,23 +19,31 @@ namespace Codefarts.AppCore.Interfaces
         /// </summary>
         event SettingChangedEventHandler SettingChanged;
 
+        ///// <summary>
+        ///// Gets a setting value.
+        ///// </summary>
+        ///// <typeparam name="T">The type to be returned.</typeparam>
+        ///// <param name="key">The name of the setting.</param>
+        ///// <param name="defaultValue">The default value to return if there was a problem returning the setting value.</param>
+        ///// <returns>The value of the setting.</returns>
+        //T GetSetting<T>(string key, T defaultValue);
+
         /// <summary>
         /// Gets a setting value.
         /// </summary>
         /// <typeparam name="T">The type to be returned.</typeparam>
         /// <param name="key">The name of the setting.</param>
-        /// <param name="defaultValue">The default value to return if there was a problem returning the setting value.</param>
         /// <returns>The value of the setting.</returns>
-        T GetSetting<T>(string key, T defaultValue);
+        T GetSetting<T>(string key);
 
-        /// <summary>
-        /// Tries the get a setting value.
-        /// </summary>
-        /// <typeparam name="T">The type to be returned.</typeparam>
-        /// <param name="key">The name of the setting.</param>
-        /// <param name="value">The setting value to be returned.</param>
-        /// <returns>true if successful; otherwise false.</returns>
-        bool TryGetSetting<T>(string key, out T value);
+        ///// <summary>
+        ///// Tries the get a setting value.
+        ///// </summary>
+        ///// <typeparam name="T">The type to be returned.</typeparam>
+        ///// <param name="key">The name of the setting.</param>
+        ///// <param name="value">The setting value to be returned.</param>
+        ///// <returns>true if successful; otherwise false.</returns>
+        //bool TryGetSetting<T>(string key, out T value);
 
         /// <summary>
         /// Sets a setting value.

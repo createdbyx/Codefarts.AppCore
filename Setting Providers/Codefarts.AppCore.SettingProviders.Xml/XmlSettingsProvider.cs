@@ -4,8 +4,6 @@
 // http://www.codefarts.com
 // </copyright>
 
-using System.Text;
-
 namespace Codefarts.AppCore.SettingProviders.Xml
 {
     using System;
@@ -264,41 +262,15 @@ namespace Codefarts.AppCore.SettingProviders.Xml
             }
         }
 
-        public T GetSetting<T>(string key, T defaultValue)
+        public T GetSetting<T>(string key)
         {
             T value;
-            return this.TryGetSetting(key, out value) ? value : defaultValue;
-        }
-
-        public bool TryGetSetting<T>(string key, out T value)
-        {
-            if (!this.dataStore.ContainsKey(key))
+            if (!this.TryGetSetting(key, out value))
             {
-                value = default(T);
-                return false;
+                throw new SettingException($"Failed to retrieve setting '{key}'.");
             }
 
-            T retrievedValue;
-            try
-            {
-                var type = typeof(T);
-                if (type.IsEnum)
-                {
-                    retrievedValue = (T)Enum.Parse(type, this.dataStore[key].ToString());
-                }
-                else
-                {
-                    retrievedValue = (T)this.dataStore[key];
-                }
-            }
-            catch (Exception)
-            {
-                value = default(T);
-                return false;
-            }
-
-            value = retrievedValue;
-            return true;
+            return value;
         }
 
         public void SetSetting<T>(string key, T value)
