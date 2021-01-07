@@ -255,34 +255,29 @@ namespace Codefarts.AppCore.SettingProviders.Xml
 
         private void DoSaveDocument(XmlDocument doc, string fileName)
         {
-            using (var stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+            using (var stream = new FileStream(fileName, FileMode.Truncate, FileAccess.Write, FileShare.None))
             {
-                stream.SetLength(0); // to prevent xml corruption
                 doc.Save(stream);
             }
         }
 
         public T GetSetting<T>(string key)
         {
-            T value;
-            if (!this.TryGetSetting(key, out value))
+            try
             {
-                throw new SettingException($"Failed to retrieve setting '{key}'.");
+                return (T)this.dataStore[key];
             }
-
-            return value;
+            catch (Exception e)
+            {
+                throw new SettingException($"Failed to retrieve setting '{key}'.", e);
+            }
         }
 
         public void SetSetting<T>(string key, T value)
         {
-            if (!this.dataStore.ContainsKey(key))
-            {
-                this.dataStore.Add(key, null);
-            }
-
             this.dataStore[key] = value;
-
             this.Write();
+
             // TODO: Determine if setting actually changed before raising event otherwise it will fire every change
             this.OnSettingChanged(new SettingChangedEventHandlerArgs(key, value));
         }
