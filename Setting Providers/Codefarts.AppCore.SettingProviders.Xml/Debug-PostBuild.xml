@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <inline>
+    <variable name="ProjFolder" value="net5.0-windows" />
+  
     <!--<restorereferences path="$(ProjectDir)ExcludedReferences.xml" delete="true"/>-->
-    <deploy path="$(SolutionDir)StockWatchWpfCore\bin\$(ConfigurationName)\netcoreapp3.1\SettingProviders\$(ProjectName)" clean="true" >
+    <deploy path="$(SolutionDir)StockWatchWpfCore\bin\$(ConfigurationName)\$(ProjFolder)\SettingProviders\$(ProjectName)" clean="true" >
         <condition value1="$(SolutionName)" operator="=" value2="Codefarts.StockMarket" />
     </deploy>
+    
+    <removevariable name="ProjFolder" />         
 </inline>
