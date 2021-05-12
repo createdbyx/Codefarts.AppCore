@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyVersion>2021.4.1.1</AssemblyVersion>
+    <FileVersion>2021.4.1.1</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,11 +16,29 @@
 
   <ItemGroup>
     <Compile Include="..\Codefarts.AppCore35\BindableCollection.cs" Link="BindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\Commands\BaseCommand.cs">
+      <Link>Commands\BaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Commands\DelegateCommand.cs">
+      <Link>Commands\DelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Commands\GenericBaseCommand.cs">
+      <Link>Commands\GenericBaseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Commands\GenericDelegateCommand.cs">
+      <Link>Commands\GenericDelegateCommand.cs</Link>
+    </Compile>
     <Compile Include="..\Codefarts.AppCore35\EventArgs\PropertyChangedEventArgs.cs" Link="EventArgs\PropertyChangedEventArgs.cs" />
     <Compile Include="..\Codefarts.AppCore35\EventArgs\SettingChangedEventHandlerArgs.cs" Link="EventArgs\SettingChangedEventHandlerArgs.cs" />
     <Compile Include="..\Codefarts.AppCore35\EventHandlers.cs" Link="EventHandlers.cs" />
     <Compile Include="..\Codefarts.AppCore35\ExtensionMethods.cs" Link="ExtensionMethods.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\IBindableCollection.cs" Link="Interfaces\IBindableCollection.cs" />
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\ICommand.cs">
+      <Link>Interfaces\ICommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\ICommandGeneric.cs">
+      <Link>Interfaces\ICommandGeneric.cs</Link>
+    </Compile>
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs" Link="Interfaces\ILocalizationProvider.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\INotifyPropertyChangedEx.cs" Link="Interfaces\INotifyPropertyChangedEx.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\IPlatformProvider.cs" Link="Interfaces\IPlatformProvider.cs" />

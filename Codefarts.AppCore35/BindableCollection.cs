@@ -1,5 +1,7 @@
 ﻿// <copyright file="BindableCollection.cs" company="Codefarts">
 // Copyright (c) Codefarts
+// contact@codefarts.com
+// http://www.codefarts.com
 // </copyright>
 
 namespace Codefarts.AppCore
@@ -109,7 +111,7 @@ namespace Codefarts.AppCore
         /// <summary>
         /// Raises a change notification indicating that all bindings should be refreshed.
         /// </summary>
-        /// <remarks>Raises 2 <seealso cref="ObservableCollection{T}.PropertyChanged"/> events in the following order.
+        /// <remarks>Raises 2 <see cref="ObservableCollection{T}.PropertyChanged"/> events in the following order.
         /// <see cref="Collection{T}.Count"/>, then <see cref="Collection{T}.this"/>, then raises a <see cref="ObservableCollection{T}.CollectionChanged"/>
         /// event with the <seealso cref="NotifyCollectionChangedAction.Reset"/> argument.</remarks>
         public void Refresh()
@@ -145,27 +147,6 @@ namespace Codefarts.AppCore
         }
 
         /// <summary>
-        /// Adds a collection of items.
-        /// </summary>
-        /// <param name="items">The items to be added.</param>
-        /// <remarks>This method is private not meant to be called from outside the <see cref="BindableCollection{T}"/> class.</remarks>
-        private void AddRangeInternal(IEnumerable<T> items)
-        {
-            var previousNotificationSetting = this.IsNotifying;
-            this.IsNotifying = false;
-            foreach (var item in items)
-            {
-                this.InsertItemBase(this.Count, item);
-            }
-
-            this.IsNotifying = previousNotificationSetting;
-
-            this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-            this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        }
-
-        /// <summary>
         /// Removes the items from the collection.
         /// </summary>
         /// <param name="items">The items to be removed.</param>
@@ -178,31 +159,6 @@ namespace Codefarts.AppCore
             }
 
             this.RemoveRangeInternal(items);
-        }
-
-        /// <summary>
-        /// Removes the items from the collection.
-        /// </summary>
-        /// <param name="items">The items to be removed.</param>
-        /// <remarks>This method is private not meant to be called from outside the <see cref="BindableCollection{T}"/> class.</remarks>
-        private void RemoveRangeInternal(IEnumerable<T> items)
-        {
-            var previousNotificationSetting = this.IsNotifying;
-            this.IsNotifying = false;
-            foreach (var item in items)
-            {
-                var index = this.IndexOf(item);
-                if (index >= 0)
-                {
-                    this.RemoveItemBase(index);
-                }
-            }
-
-            this.IsNotifying = previousNotificationSetting;
-
-            this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-            this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         /// <summary>
@@ -337,6 +293,52 @@ namespace Codefarts.AppCore
             {
                 base.OnPropertyChanged(e);
             }
+        }
+
+        /// <summary>
+        /// Removes the items from the collection.
+        /// </summary>
+        /// <param name="items">The items to be removed.</param>
+        /// <remarks>This method is private not meant to be called from outside the <see cref="BindableCollection{T}"/> class.</remarks>
+        private void RemoveRangeInternal(IEnumerable<T> items)
+        {
+            var previousNotificationSetting = this.IsNotifying;
+            this.IsNotifying = false;
+            foreach (var item in items)
+            {
+                var index = this.IndexOf(item);
+                if (index >= 0)
+                {
+                    this.RemoveItemBase(index);
+                }
+            }
+
+            this.IsNotifying = previousNotificationSetting;
+
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        /// <summary>
+        /// Adds a collection of items.
+        /// </summary>
+        /// <param name="items">The items to be added.</param>
+        /// <remarks>This method is private not meant to be called from outside the <see cref="BindableCollection{T}"/> class.</remarks>
+        private void AddRangeInternal(IEnumerable<T> items)
+        {
+            var previousNotificationSetting = this.IsNotifying;
+            this.IsNotifying = false;
+            foreach (var item in items)
+            {
+                this.InsertItemBase(this.Count, item);
+            }
+
+            this.IsNotifying = previousNotificationSetting;
+
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+            this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
     }
 }
