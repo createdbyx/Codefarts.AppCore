@@ -27,21 +27,19 @@ namespace Codefarts.AppCore.EventArgs
         }
 
         /// <summary>
-        /// Gets or sets the setting key.
+        /// Gets the setting key.
         /// </summary>
         public string Key
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// Gets or sets the value that changed.
+        /// Gets the value that changed.
         /// </summary>
         public object Value
         {
             get;
-            private set;
         }
     }
 }

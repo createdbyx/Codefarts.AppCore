@@ -1,8 +1,8 @@
 ﻿// <copyright file="PropertyChangedBase.cs" company="Codefarts">
 // Copyright (c) Codefarts
+// contact@codefarts.com
+// http://www.codefarts.com
 // </copyright>
-
-using System.Runtime.CompilerServices;
 
 namespace Codefarts.AppCore
 {
@@ -10,12 +10,15 @@ namespace Codefarts.AppCore
     using System.ComponentModel;
     using System.Linq.Expressions;
     using System.Reflection;
+    using Codefarts.AppCore.Interfaces;
 
     /// <summary>
     /// A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
     /// </summary>
-    public class PropertyChangedBase : INotifyPropertyChanged
+    public class PropertyChangedBase : INotifyPropertyChangedEx
     {
+        private bool isNotifying;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyChangedBase"/> class.
         /// </summary>
@@ -34,7 +37,20 @@ namespace Codefarts.AppCore
         /// </summary>
         public virtual bool IsNotifying
         {
-            get; set;
+            get
+            {
+                return this.isNotifying;
+            }
+
+            set
+            {
+                var currentValue = this.isNotifying;
+                if (currentValue != value)
+                {
+                    this.isNotifying = value;
+                    this.NotifyOfPropertyChange(() => this.IsNotifying);
+                }
+            }
         }
 
         /// <summary>
@@ -55,23 +71,24 @@ namespace Codefarts.AppCore
         public virtual void NotifyOfPropertyChange(string propertyName = null)
         {
             var handler = this.PropertyChanged;
-            if (this.IsNotifying && handler != null)
+            var notifying = this.IsNotifying;
+            if (notifying && handler != null)
             {
                 this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
             }
         }
 
-        ///// <summary>
-        ///// Notifies subscribers of the property change.
-        ///// </summary>
-        ///// <typeparam name="TProperty">The type of the property.</typeparam>
-        ///// <param name="property">The property expression.</param>
-        //public void NotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> property)
-        //{
-        //    this.PropertyChanged.Notify(this, property);
-        //   // this.PropertyChanged.Notify(this, this.GetMemberInfo(property).Name);
-        //    //  this.NotifyOfPropertyChange(this.GetMemberInfo(property).Name);
-        //}
+        /// <summary>
+        /// Notifies subscribers of the property change.
+        /// </summary>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="property">The property expression.</param>
+        public void NotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> property)
+        {
+            // this.PropertyChanged.Notify(this, property);
+           // this.PropertyChanged.Notify(this, this.GetMemberInfo(property).Name);
+             this.NotifyOfPropertyChange(this.GetMemberInfo(property).Name);
+        }
 
         /// <summary>
         /// Raises the <see cref="PropertyChanged" /> event directly.
@@ -87,27 +104,27 @@ namespace Codefarts.AppCore
             }
         }
 
-        ///// <summary>
-        ///// Gets the member information for a given expression.
-        ///// </summary>
-        ///// <param name="expression">The expression to get the member info from.</param>
-        ///// <returns>A reference to a <see cref="MemberInfo"/> object.</returns>
-        //private MemberInfo GetMemberInfo(Expression expression)
-        //{
-        //    var lambda = (LambdaExpression)expression;
+        /// <summary>
+        /// Gets the member information for a given expression.
+        /// </summary>
+        /// <param name="expression">The expression to get the member info from.</param>
+        /// <returns>A reference to a <see cref="MemberInfo"/> object.</returns>
+        private MemberInfo GetMemberInfo(Expression expression)
+        {
+            var lambda = (LambdaExpression)expression;
 
-        //    MemberExpression memberExpression;
-        //    var unaryExpression = lambda.Body as UnaryExpression;
-        //    if (unaryExpression != null)
-        //    {
-        //        memberExpression = (MemberExpression)unaryExpression.Operand;
-        //    }
-        //    else
-        //    {
-        //        memberExpression = (MemberExpression)lambda.Body;
-        //    }
+            MemberExpression memberExpression;
+            var unaryExpression = lambda.Body as UnaryExpression;
+            if (unaryExpression != null)
+            {
+                memberExpression = (MemberExpression)unaryExpression.Operand;
+            }
+            else
+            {
+                memberExpression = (MemberExpression)lambda.Body;
+            }
 
-        //    return memberExpression.Member;
-        //}
+            return memberExpression.Member;
+        }
     }
 }

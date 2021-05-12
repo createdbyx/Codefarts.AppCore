@@ -1,11 +1,13 @@
 ﻿// <copyright file="PlatformData.cs" company="Codefarts">
 // Copyright (c) Codefarts
+// contact@codefarts.com
+// http://www.codefarts.com
 // </copyright>
-
-using System.Collections.Generic;
 
 namespace Codefarts.AppCore
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Contains properties that provide platform and environment data.
     /// </summary>
@@ -17,6 +19,7 @@ namespace Codefarts.AppCore
         /// <param name="operatingSystem">The operating system name.</param>
         /// <param name="processorCount">The processor count.</param>
         /// <param name="commandLineArguments">The command line (if any) that was used to start the process.</param>
+        /// <param name="applicationPath">The path to the main application executable.</param>
         public PlatformData(string operatingSystem, int processorCount, IEnumerable<string> commandLineArguments, string applicationPath)
         {
             this.OperatingSystem = operatingSystem;
@@ -52,6 +55,9 @@ namespace Codefarts.AppCore
             get; private set;
         }
 
+        /// <summary>
+        /// Gets the path to the main application executable.
+        /// </summary>
         public string ApplicationPath
         {
             get; private set;

@@ -1,8 +1,13 @@
-﻿namespace Codefarts.AppCore
+﻿// <copyright file="WpfPlatformProvider.cs" company="Codefarts">
+// Copyright (c) Codefarts
+// contact@codefarts.com
+// http://www.codefarts.com
+// </copyright>
+
+namespace Codefarts.AppCore
 {
     using System;
     using System.ComponentModel;
-    using System.Reflection;
     using System.Windows;
     using Codefarts.AppCore.Interfaces;
 

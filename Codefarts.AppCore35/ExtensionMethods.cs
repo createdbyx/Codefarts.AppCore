@@ -1,11 +1,12 @@
 ﻿// <copyright file="ExtensionMethods.cs" company="Codefarts">
 // Copyright (c) Codefarts
+// contact@codefarts.com
+// http://www.codefarts.com
 // </copyright>
-
-using System;
 
 namespace Codefarts.AppCore
 {
+    using System;
     using Codefarts.AppCore.Interfaces;
 
     /// <summary>
@@ -14,9 +15,6 @@ namespace Codefarts.AppCore
     public static class ExtensionMethods
     {
         /// <summary>Gets the localized string.</summary>
-        /// <summary>
-        /// Gets a localized string.
-        /// </summary>
         /// <param name="provider">The localization provider reference.</param>
         /// <param name="name">The name of the localized string.</param>
         /// <param name="defaultValue">The default value to return if unable to retrieve the localized string.</param>
@@ -28,7 +26,6 @@ namespace Codefarts.AppCore
                 if (provider == null)
                 {
                     return defaultValue;
-
                 }
 
                 return provider.GetString(name);
@@ -39,20 +36,31 @@ namespace Codefarts.AppCore
             }
         }
 
-        public static T GetSetting<T>(this ISettingsProvider provider, string key, T defaultValue)
+        /// <summary>Gets the setting value.</summary>
+        /// <param name="provider">The settings provider provider reference.</param>
+        /// <param name="name">The name of the setting.</param>
+        /// <param name="defaultValue">The default value to return if unable to retrieve the setting value.</param>
+        /// <typeparam name="T">Specifies the property type.</typeparam>
+        /// <returns>The value of the setting.</returns>
+        public static T GetSetting<T>(this ISettingsProvider provider, string name, T defaultValue)
         {
             T value;
-            return provider.TryGetSetting(key, out value) ? value : defaultValue;
+            return provider.TryGetSetting(name, out value) ? value : defaultValue;
         }
 
-        public static bool TryGetSetting<T>(this ISettingsProvider provider, string key, out T value)
+        /// <summary>Gets the setting value.</summary>
+        /// <param name="provider">The settings provider provider reference.</param>
+        /// <param name="name">The name of the setting.</param>
+        /// <param name="value">The setting value to return.</param>
+        /// <returns>The true if successful; otherwise false.</returns>
+        public static bool TryGetSetting<T>(this ISettingsProvider provider, string name, out T value)
         {
             if (provider == null)
             {
                 throw new ArgumentNullException(nameof(provider));
             }
 
-            if (!provider.SettingKeys.Contains(key))
+            if (!provider.SettingKeys.Contains(name))
             {
                 value = default(T);
                 return false;
@@ -64,11 +72,11 @@ namespace Codefarts.AppCore
                 var type = typeof(T);
                 if (type.IsEnum)
                 {
-                    retrievedValue = (T)Enum.Parse(type, provider.GetSetting<T>(key).ToString());
+                    retrievedValue = (T)Enum.Parse(type, provider.GetSetting<T>(name).ToString());
                 }
                 else
                 {
-                    retrievedValue = (T)provider.GetSetting<T>(key);
+                    retrievedValue = (T)provider.GetSetting<T>(name);
                 }
             }
             catch (Exception)
@@ -80,41 +88,5 @@ namespace Codefarts.AppCore
             value = retrievedValue;
             return true;
         }
-
-        ///// <summary>Gets the argument from a <see cref="IConstructorArguments" /> implementation.</summary>
-        ///// <param name="args">The <see cref="IConstructorArguments"/> implementation.</param>
-        ///// <param name="name">The name of the argument.</param>
-        ///// <param name="defaultValue">The default value to return if unable to retrieve the argument.</param>
-        ///// <returns>The value of the argument.</returns>
-        //public static T GetArgument<T>(this IConstructorArguments args, string name, T defaultValue)
-        //{
-        //    try
-        //    {
-        //        var actualKey = args.Arguments.Keys.FirstOrDefault(x => x.Equals(name, StringComparison.OrdinalIgnoreCase));
-        //        return (T)args.Arguments[actualKey];
-        //    }
-        //    catch
-        //    {
-        //        return defaultValue;
-        //    }
-        //}
-
-        //private static MemberInfo GetMemberInfo(Expression expression)
-        //{
-        //    var lambda = (LambdaExpression)expression;
-
-        //    MemberExpression memberExpression;
-        //    var unaryExpression = lambda.Body as UnaryExpression;
-        //    if (unaryExpression != null)
-        //    {
-        //        memberExpression = (MemberExpression)unaryExpression.Operand;
-        //    }
-        //    else
-        //    {
-        //        memberExpression = (MemberExpression)lambda.Body;
-        //    }
-
-        //    return memberExpression.Member;
-        //}
     }
 }

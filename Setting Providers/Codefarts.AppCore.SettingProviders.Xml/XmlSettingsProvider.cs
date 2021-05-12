@@ -291,12 +291,7 @@ namespace Codefarts.AppCore.SettingProviders.Xml
                 }
             }
         }
-
-        public void Draw()
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         /// <summary>
         /// Finalizes an instance of the <see cref="XmlSettingsProvider"/> class.
         /// </summary>
