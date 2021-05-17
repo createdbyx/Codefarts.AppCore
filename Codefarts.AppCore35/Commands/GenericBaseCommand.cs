@@ -13,7 +13,7 @@ namespace Codefarts.AppCore.Commands
     /// Provides a base class for a command with a specified parameter type.
     /// </summary>
     /// <typeparam name="T">The type for the parameter argument.</typeparam>
-    public abstract class GenericBaseCommand<T> : PropertyChangedBase, ICommandGeneric<T>
+    public abstract class GenericBaseCommand<T> : PropertyChangedBase, ICommand<T>
     {
         /// <inheritdoc />
         public event EventHandler CanExecuteChanged;
@@ -35,7 +35,7 @@ namespace Codefarts.AppCore.Commands
             var handler = this.CanExecuteChanged;
             if (handler != null)
             {
-                handler.Invoke(this, System.EventArgs.Empty);
+                handler.Invoke(this, EventArgs.Empty);
             }
         }
     }

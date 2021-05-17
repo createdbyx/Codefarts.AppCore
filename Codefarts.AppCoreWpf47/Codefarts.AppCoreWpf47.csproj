@@ -51,6 +51,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Codefarts.AppCoreWpf35\CommandFactory.cs">
+      <Link>CommandFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCoreWpf35\WpfCommandWrapper.cs">
+      <Link>WpfCommandWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCoreWpf35\WpfGenericCommandWrapper.cs">
+      <Link>WpfGenericCommandWrapper.cs</Link>
+    </Compile>
     <Compile Include="..\Codefarts.AppCoreWpf35\WpfPlatformProvider.cs">
       <Link>WpfPlatformProvider.cs</Link>
     </Compile>

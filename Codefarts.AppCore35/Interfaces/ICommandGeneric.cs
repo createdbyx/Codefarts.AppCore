@@ -12,7 +12,7 @@ namespace Codefarts.AppCore.Interfaces
     /// Provides a interface for application commands.
     /// </summary>
     /// <typeparam name="T">The parameter type that the command expects.</typeparam>
-    public interface ICommandGeneric<T>
+    public interface ICommand<T>
     {
         /// <summary>
         /// Raised when the state command state changes.

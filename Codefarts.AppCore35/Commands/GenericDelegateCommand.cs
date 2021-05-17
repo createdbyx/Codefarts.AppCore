@@ -47,10 +47,7 @@ namespace Codefarts.AppCore.Commands
         /// </summary>
         public Func<T, bool> CanExecuteCallback
         {
-            get
-            {
-                return this.canExecuteCallback;
-            }
+            get { return this.canExecuteCallback; }
 
             set
             {
@@ -68,10 +65,7 @@ namespace Codefarts.AppCore.Commands
         /// </summary>
         public Action<T> ExecuteCallback
         {
-            get
-            {
-                return this.executeCallback;
-            }
+            get { return this.executeCallback; }
 
             set
             {
