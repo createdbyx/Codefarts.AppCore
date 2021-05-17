@@ -66,6 +66,12 @@
     <Compile Include="..\Codefarts.AppCore35\Interfaces\IBindableCollection.cs">
       <Link>Interfaces\IBindableCollection.cs</Link>
     </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\ICommand.cs">
+      <Link>Interfaces\ICommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Codefarts.AppCore35\Interfaces\ICommandGeneric.cs">
+      <Link>Interfaces\ICommandGeneric.cs</Link>
+    </Compile>
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs">
       <Link>Interfaces\ILocalizationProvider.cs</Link>
     </Compile>

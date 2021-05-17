@@ -30,9 +30,6 @@
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ICommand.cs">
       <Link>Interfaces\ICommand.cs</Link>
     </Compile>
-    <Compile Include="..\Codefarts.AppCore35\Interfaces\ICommandGeneric.cs">
-      <Link>Interfaces\ICommandGeneric.cs</Link>
-    </Compile>
     <Compile Include="..\Codefarts.AppCore35\Interfaces\ILocalizationProvider.cs" Link="Interfaces\ILocalizationProvider.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\INotifyPropertyChangedEx.cs" Link="Interfaces\INotifyPropertyChangedEx.cs" />
     <Compile Include="..\Codefarts.AppCore35\Interfaces\IPlatformProvider.cs" Link="Interfaces\IPlatformProvider.cs" />
