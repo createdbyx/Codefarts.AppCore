@@ -7,7 +7,7 @@
     <ProjectGuid>{C030BCD5-3C53-40DF-9783-8718145BEEA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Codefarts.AppCoreWpf46</RootNamespace>
+    <RootNamespace>Codefarts.AppCore.Wpf</RootNamespace>
     <AssemblyName>Codefarts.AppCoreWpf46</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

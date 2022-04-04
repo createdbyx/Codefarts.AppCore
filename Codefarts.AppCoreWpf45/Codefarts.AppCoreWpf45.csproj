@@ -7,7 +7,7 @@
     <ProjectGuid>{230D21B4-B4B2-4D1F-99D7-140F5A275996}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Codefarts.AppCoreWpf45</RootNamespace>
+    <RootNamespace>Codefarts.AppCore.Wpf</RootNamespace>
     <AssemblyName>Codefarts.AppCoreWpf45</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

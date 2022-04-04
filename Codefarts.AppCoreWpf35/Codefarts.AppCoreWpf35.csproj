@@ -7,7 +7,7 @@
     <ProjectGuid>{8289E7BC-9BE1-43D4-B7A3-FFD6086D4C2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Codefarts.AppCoreWpf35</RootNamespace>
+    <RootNamespace>Codefarts.AppCore.Wpf</RootNamespace>
     <AssemblyName>Codefarts.AppCoreWpf35</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

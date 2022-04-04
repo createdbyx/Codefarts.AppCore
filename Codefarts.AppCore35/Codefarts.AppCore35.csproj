@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Codefarts.AppCore</RootNamespace>
-    <AssemblyName>Codefarts.AppCore</AssemblyName>
+    <AssemblyName>Codefarts.AppCore35</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
