@@ -12,7 +12,6 @@ namespace Codefarts.AppCore.Unity.Editor
     using System;
     using System.Collections.Specialized;
     using System.Net;
-    using Codefarts.AppCore.Interfaces;
     using Codefarts.IoC;
     using UnityEditor;
     using UnityEngine;

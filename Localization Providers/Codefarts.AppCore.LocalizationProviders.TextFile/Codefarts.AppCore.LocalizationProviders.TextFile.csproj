@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Codefarts.AppCore.LocalizationProviders.TextFile</RootNamespace>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.0.0</Version>
+        <Authors>Dean Lunz</Authors>
+        <Copyright>Codefarts</Copyright>
+        <PackageProjectUrl>https://github.com/createdbyx/Codefarts.AppCore.git</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/createdbyx/Codefarts.AppCore.git</RepositoryUrl>
+        <RepositoryType>C#</RepositoryType>
+        <Company>Codefarts</Company>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Codefarts.AppCore\Codefarts.AppCore.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="..\..\stylecop.json">
+        <Link>stylecop.json</Link>
+      </AdditionalFiles>
+    </ItemGroup>
+
+</Project>

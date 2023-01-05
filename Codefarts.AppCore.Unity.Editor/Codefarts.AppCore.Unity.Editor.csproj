@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Codefarts.AppCore\Codefarts.AppCoreNETStd\Codefarts.AppCoreNETStd2.csproj" />
     <ProjectReference Include="..\..\Codefarts.IoC\Codefarts.IoCStandard20\Codefarts.IoCStandard20.csproj" />
     <ProjectReference Include="..\Codefarts.AppCore.Unity\Codefarts.AppCore.Unity.csproj" />
   </ItemGroup>

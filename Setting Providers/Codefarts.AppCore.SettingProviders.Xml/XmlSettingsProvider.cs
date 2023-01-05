@@ -19,9 +19,8 @@ namespace Codefarts.AppCore.SettingProviders.Xml
     /// <summary>
     /// Provides a XML file based <see cref="ISettingsProvider"/> implementation.
     /// </summary>
-    public class XmlSettingsProvider : ISettingsProvider
+    public class XmlSettingsProvider : ISettingsProvider, IDisposable
     {
-
         /// <summary>
         /// The data store.
         /// </summary>
@@ -45,17 +44,7 @@ namespace Codefarts.AppCore.SettingProviders.Xml
         }
 
         private int readDelayInSeconds;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlSettingsProvider"/> class.
-        /// </summary>
-        /// <param name="fileName">
-        /// The settings file name.
-        /// </param>
-        public XmlSettingsProvider(string fileName)
-            : this(fileName, true)
-        {
-        }
+        private bool alreadyDisposed;
 
         /// <inheritdoc/>
         public event SettingChangedEventHandler SettingChanged;
@@ -115,12 +104,49 @@ namespace Codefarts.AppCore.SettingProviders.Xml
         /// <param name="fileName">
         /// The settings file name.
         /// </param>
+        public XmlSettingsProvider(IPlatformProvider provider)
+        {
+            var platformData = provider.GetPlatformData();
+            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments, Environment.SpecialFolderOption.DoNotVerify);
+            var appFilename = Path.GetFileNameWithoutExtension(platformData.ApplicationPath);
+            var fileName = Path.Combine(folderPath, appFilename);
+            fileName = Path.ChangeExtension(fileName, "xml");
+            this.InitalizeSettingsFile(fileName, true);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlSettingsProvider"/> class.
+        /// </summary>
+        /// <param name="fileName">
+        /// The settings file name.
+        /// </param>
+        public XmlSettingsProvider(string fileName)
+            : this(fileName, true)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlSettingsProvider"/> class.
+        /// </summary>
+        /// <param name="fileName">
+        /// The settings file name.
+        /// </param>
         /// <param name="create"><c>true</c> Create the settings file immediately if one does not exist.</param>
         /// <exception cref="ArgumentNullException">
         /// If <see cref="fileName"/> is null or empty.
         /// </exception>
         public XmlSettingsProvider(string fileName, bool create)
         {
+            this.InitalizeSettingsFile(fileName, create);
+        }
+
+        private void InitalizeSettingsFile(string fileName, bool create)
+        {
+            if (this.alreadyDisposed)
+            {
+                throw new ObjectDisposedException(nameof(XmlSettingsProvider));
+            }
+            
             if (string.IsNullOrWhiteSpace(fileName))
             {
                 throw new ArgumentNullException(nameof(fileName), $"'{nameof(fileName)}' argument was missing, empty, or null.");
@@ -129,13 +155,13 @@ namespace Codefarts.AppCore.SettingProviders.Xml
             var directoryName = Path.GetDirectoryName(fileName);
             if (directoryName != null && directoryName.IndexOfAny(Path.GetInvalidPathChars()) != -1)
             {
-                throw new Exception("Invalid path characters detected!");
+                throw new ArgumentException("Invalid path characters detected!");
             }
 
             var name = Path.GetFileName(fileName);
             if (name != null && name.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
             {
-                throw new Exception("Invalid filename characters detected!");
+                throw new ArgumentException("Invalid filename characters detected!");
             }
 
             this.readDelayInSeconds = 5;
@@ -164,10 +190,7 @@ namespace Codefarts.AppCore.SettingProviders.Xml
         /// <summary>
         /// Gets the file name.
         /// </summary>
-        public string FileName
-        {
-            get;
-        }
+        public string FileName { get; private set; }
 
         /// <summary>
         /// Reads values into the <see cref="dataStore"/> filed using linq.
@@ -255,7 +278,8 @@ namespace Codefarts.AppCore.SettingProviders.Xml
 
         private void DoSaveDocument(XmlDocument doc, string fileName)
         {
-            using (var stream = new FileStream(fileName, FileMode.Truncate, FileAccess.Write, FileShare.None))
+            var fileMode = File.Exists(fileName) ? FileMode.Truncate : FileMode.CreateNew;
+            using (var stream = new FileStream(fileName, fileMode, FileAccess.Write, FileShare.None))
             {
                 doc.Save(stream);
             }
@@ -263,6 +287,11 @@ namespace Codefarts.AppCore.SettingProviders.Xml
 
         public T GetSetting<T>(string key)
         {
+            if (this.alreadyDisposed)
+            {
+                throw new ObjectDisposedException(nameof(XmlSettingsProvider));
+            }
+            
             try
             {
                 return (T)this.dataStore[key];
@@ -275,6 +304,11 @@ namespace Codefarts.AppCore.SettingProviders.Xml
 
         public void SetSetting<T>(string key, T value)
         {
+            if (this.alreadyDisposed)
+            {
+                throw new ObjectDisposedException(nameof(XmlSettingsProvider));
+            }
+            
             this.dataStore[key] = value;
             this.Write();
 
@@ -287,17 +321,14 @@ namespace Codefarts.AppCore.SettingProviders.Xml
             get
             {
                 {
+                    if (this.alreadyDisposed)
+                    {
+                        throw new ObjectDisposedException(nameof(XmlSettingsProvider));
+                    }
+                    
                     return new ReadOnlyCollection<string>(this.dataStore.Keys.ToArray());
                 }
             }
-        }
- 
-        /// <summary>
-        /// Finalizes an instance of the <see cref="XmlSettingsProvider"/> class.
-        /// </summary>
-        ~XmlSettingsProvider()
-        {
-            this.Write();
         }
 
         protected virtual void OnSettingChanged(SettingChangedEventHandlerArgs args)
@@ -307,6 +338,16 @@ namespace Codefarts.AppCore.SettingProviders.Xml
             {
                 handler(this, args);
             }
+        }
+
+        public void Dispose()
+        {
+            if(this.alreadyDisposed)
+                return;
+            
+            this.Write();
+
+            this.alreadyDisposed = true;
         }
     }
 }
