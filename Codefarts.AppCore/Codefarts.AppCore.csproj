@@ -13,9 +13,9 @@
     <RepositoryUrl>https://github.com/createdbyx/Codefarts.AppCore.git</RepositoryUrl>
     <RepositoryType>C#</RepositoryType>
     <PackageTags>cross platform</PackageTags>
-    <PackageVersion>2023.1.5.1</PackageVersion>
-    <AssemblyVersion>2023.1.5.1</AssemblyVersion>
-    <FileVersion>2023.1.5.1</FileVersion>
+    <PackageVersion>2023.1.6.1</PackageVersion>
+    <AssemblyVersion>2023.1.6.1</AssemblyVersion>
+    <FileVersion>2023.1.6.1</FileVersion>
     <AssemblyName>Codefarts.AppCore</AssemblyName>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <LangVersion>default</LangVersion>

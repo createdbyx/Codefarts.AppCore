@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore.Localizat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Libs", "Core Libs", "{448AFD77-FC30-4703-8C2E-DF1593CD6FC0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MonoGame", "MonoGame", "{14213D92-5B27-40E9-9955-E075F448494B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codefarts.AppCore.MonoGame", "Codefarts.AppCore.MonoGame\Codefarts.AppCore.MonoGame.csproj", "{89A84919-0C04-43ED-84F8-AC6B554489EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{798E00A6-9EA4-4466-A9FA-44EF02FD1D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{798E00A6-9EA4-4466-A9FA-44EF02FD1D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{798E00A6-9EA4-4466-A9FA-44EF02FD1D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A84919-0C04-43ED-84F8-AC6B554489EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A84919-0C04-43ED-84F8-AC6B554489EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A84919-0C04-43ED-84F8-AC6B554489EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A84919-0C04-43ED-84F8-AC6B554489EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +80,7 @@ Global
 		{C4E375A7-E2DB-4235-9EB0-EF57D53A1205} = {2F3DF174-2596-4E60-A644-2F466DDB8E7B}
 		{798E00A6-9EA4-4466-A9FA-44EF02FD1D60} = {E8B2AC86-CE45-41D9-B0C1-E2DF1BB17954}
 		{CCCC2A62-2814-4700-A66A-4CBE1F1A0BC1} = {448AFD77-FC30-4703-8C2E-DF1593CD6FC0}
+		{89A84919-0C04-43ED-84F8-AC6B554489EE} = {14213D92-5B27-40E9-9955-E075F448494B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {699E202A-B6F5-432E-B9E2-D77C2CA1278B}

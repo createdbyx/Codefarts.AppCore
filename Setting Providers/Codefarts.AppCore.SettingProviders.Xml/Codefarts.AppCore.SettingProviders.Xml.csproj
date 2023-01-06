@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyVersion>2023.1.5.1</AssemblyVersion>
-    <FileVersion>2023.1.5.1</FileVersion>
+    <AssemblyVersion>2023.1.6.1</AssemblyVersion>
+    <FileVersion>2023.1.6.1</FileVersion>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <LangVersion>default</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>2023.1.5.1</PackageVersion>
+    <PackageVersion>2023.1.6.1</PackageVersion>
     <Authors>Dean Lunz</Authors>
     <Copyright>Codefarts</Copyright>
     <RepositoryType>C#</RepositoryType>

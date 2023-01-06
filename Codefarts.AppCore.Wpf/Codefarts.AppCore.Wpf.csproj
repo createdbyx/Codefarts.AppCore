@@ -9,8 +9,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>Codefarts</Company>
     <Product>Codefarts.AppCore.Wpf</Product>
-    <AssemblyVersion>2022.11.26.0</AssemblyVersion>
-    <FileVersion>2022.11.26.0</FileVersion>
+    <AssemblyVersion>2023.1.6.0</AssemblyVersion>
+    <FileVersion>2023.1.6.0</FileVersion>
     <LangVersion>default</LangVersion>
     <Title>Codefarts.AppCore.Wpf</Title>
     <Authors>Dean Lunz</Authors>
@@ -18,7 +18,7 @@
     <PackageProjectUrl>https://github.com/createdbyx/Codefarts.AppCore.git</PackageProjectUrl>
     <RepositoryUrl>https://github.com/createdbyx/Codefarts.AppCore.git</RepositoryUrl>
     <RepositoryType>C#</RepositoryType>
-    <PackageVersion>2022.11.26.0</PackageVersion>
+    <PackageVersion>2023.1.6.0</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Codefarts.AppCore" Version="2022.11.24" />
